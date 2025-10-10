@@ -1,3 +1,21 @@
+
+.hangout {
+    display: flex;
+    gap: 4vw;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6vw;
+    min-height: 68vh;
+    color: #fff;
+}
+
+.brain-hub {
+    max-width: 520px;
+}
+
+
+
+
 .course-accordion {
     padding: 2vw 6vw 5vw 6vw;
     max-width: 900px;
@@ -58,7 +76,6 @@
     margin-bottom: 1.5rem;
 }
 
-
 .accordion-sub-item {
     background: #f9faff;
     border: 1px solid #dbe1f8;
@@ -79,38 +96,23 @@
     padding: 0 1rem 1rem 1rem;
     border-top: 1px solid #dbe1f8;
 }
-.accordion-sub-panel h5 {
-    font-size: 1rem;
-    color: var(--primary);
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-}
-
-
-.course-accordion ul {
+.accordion-sub-panel ul {
     list-style-position: inside;
     padding-left: 0.5rem;
-    margin-bottom: 1rem;
+    color: #475569;
 }
-.course-accordion table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-}
-.course-accordion th, .course-accordion td {
-    border: 1px solid #ddd;
-    padding: 8px 10px;
-    text-align: left;
-    font-size: 0.9rem;
-}
-.course-accordion th {
-    background-color: #f2f6ff;
-    font-weight: 600;
+
+
+@media (max-width:900px) {
+    .hangout {
+        flex-direction: column;
+        text-align: center;
+    }
 }
 
 @media (max-width:650px) {
-    .course-accordion {
-        padding: 0 4vw 5vw 4vw;
+    .hangout, .course-accordion {
+        padding: 4vw;
     }
     .accordion-header h3 {
         font-size: 1.1rem;
