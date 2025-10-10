@@ -1,0 +1,182 @@
+:root {
+    --primary: #0f172a;
+    --sky: #2563eb;
+    --accent: #06b6d4;
+    --muted: #64748b;
+    --radius: 1rem;
+    --nav-height: 72px;
+    --glass: rgba(255,255,255,0.6);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif;
+    color: var(--primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    padding-top: var(--nav-height);
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.1.0&auto=format&fit=crop&w=1200&q=80");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: blur(8px) brightness(.85);
+    transform: scale(1.02);
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(180deg, rgba(4,10,40,0.1), rgba(4,10,40,0.3));
+    pointer-events: none;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+nav.recess {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--glass);
+    padding: 0 6vw;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 30px rgba(2,6,23,0.08);
+    height: var(--nav-height);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.skool-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--sky);
+    text-decoration: none;
+}
+
+.squad-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.squad-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-weight: 600;
+    position: relative;
+    transition: color 0.25s;
+}
+
+.squad-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    width: 0;
+    background: var(--sky);
+    transition: width .25s;
+}
+
+.squad-links a:hover {
+    color: var(--primary);
+}
+
+.squad-links a:hover::after,
+.squad-links a.active::after {
+    width: 100%;
+}
+
+.squad-links a.active {
+    color: var(--sky);
+}
+
+.campfire {
+    margin-top: 3rem;
+    background: #0c1221;
+    color: #e6f0ff;
+    padding: 3rem 6vw;
+    text-align: center;
+}
+
+.campfire .links-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.campfire a {
+    color: rgba(230, 240, 255, 0.8);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.campfire a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.campfire .social-media {
+    margin: 1.5rem 0;
+}
+
+.campfire .social-media a {
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+}
+
+.campfire .contact-sm {
+    margin-bottom: 1.5rem;
+    color: var(--muted);
+}
+
+.campfire .contact-sm i {
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    color: var(--accent);
+}
+
+.campfire .copy-note {
+    font-size: .9rem;
+    color: rgba(230, 240, 255, 0.6);
+    margin-top: 2rem;
+}
+
+
+@media (max-width:900px) {
+    nav.recess {
+        flex-direction: column;
+        height: auto;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width:650px) {
+    body { padding-top: 0; }
+    header { position: static; }
+    nav.recess { padding: 1rem; }
+    .campfire { padding: 2rem 4vw; }
+}

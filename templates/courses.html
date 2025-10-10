@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResQEd — Courses</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <link rel="stylesheet" href="../static/css/courses.css">
+
+    <meta name="description" content="Courses and learning tracks from ResQEd">
+</head>
+<body>
+    <header>
+        <nav class="recess">
+            <a class="skool-logo" href="homepage.html">ResQEd</a>
+            <div class="squad-links">
+                <a href="homepage.html">Home</a>
+                <a href="courses.html" class="active">Courses</a> 
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hangout">
+            <div class="brain-hub">
+                <h1 class="animate__animated animate__fadeInUp">Courses at ResQEd</h1>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Browse our curated learning tracks, AR/VR simulations, and assessments to build life-saving response skills.</p>
+                <button class="go-try animate__animated animate__fadeInUp animate__delay-2s">Browse All Courses</button>
+            </div>
+            <div class="art-project animate__animated animate__fadeInRight">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="A medical professional demonstrating something on a tablet to a colleague.">
+            </div>
+        </section>
+
+        <section class="club-cards">
+            <div class="mini-project animate__animated animate__zoomIn">
+                <i class='bx bxs-shield-plus'></i> <h2>Disaster Response 101</h2>
+                <p>Introductory course covering emergency basics and safety procedures.</p>
+                <a class="go-try" href="course1.html">View Course</a>
+            </div>
+
+            <div class="mini-project animate__animated animate__zoomIn animate__delay-1s">
+                <i class='bx bxs-first-aid'></i> <h2>First Aid & Triage</h2>
+                <p>Hands-on modules and scenario practice for immediate care.</p>
+                <a class="go-try" href="course2.html">View Course</a>
+            </div>
+
+            <div class="mini-project animate__animated animate__zoomIn animate__delay-2s">
+                <i class='bx bxs-cube-alt'></i> <h2>AR/VR Simulations</h2>
+                <p>Immersive scenarios to build decision-making under pressure.</p>
+                 <a class="go-try" href="course3.html">View Course</a>
+            </div>
+
+            <div class="mini-project animate__animated animate__zoomIn animate__delay-3s">
+                <i class='bx bxs-group'></i> <h2>Community Preparedness</h2>
+                <p>Organizing local response, communication, and recovery planning.</p>
+                <a class="go-try" href="course4.html">View Course</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="campfire">
+        <div class="links-row">
+            <a href="index.html">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="social-media">
+            <span>Follow us:
+                <a href="#" aria-label="Facebook"><i class='bx bxl-facebook-square'></i></a>
+                <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+                <a href="#" aria-label="Instagram"><i class='bx bxl-instagram-alt'></i></a>
+            </span>
+        </div>
+        <div class="contact-sm">
+            <span><i class='bx bxs-phone'></i> Call us: +91 xxx xxxx xxx</span>
+        </div>
+        <p class="copy-note">© <span id="year"></span> ResQEd — Learn. Practice. Respond.</p>
+    </footer>
+
+    <script>
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

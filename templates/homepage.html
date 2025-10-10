@@ -3,67 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResQEducation</title>
-    <link rel="stylesheet" href="../static/css/homepage.css">
+    <title>ResQEd — Home</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/homepage.css">
 </head>
 <body>
-    <div>
-        <nav class="recess">
-            <a class="skool-logo" href="index.html">ResQEd</a>
-            <div class="squad-links">
-                <a href="contact.html">Contact</a>
-                <a href="profile.html">Services</a>
-            </div>
-        </nav>
-    </div>
+
+<header>
+    <nav class="recess">
+        <a class="skool-logo" href="index.html">ResQEd</a>
+        <div class="squad-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="courses.html">Courses</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<main>
     <section class="hangout">
         <div class="brain-hub">
             <h1 class="animate__animated animate__fadeInUp">Welcome to ResQEd</h1>
-            <p class="animate__animated animate__fadeInUp">Your gateway to quality education and resources.</p>
-            <button class="go-try animate__animated animate__fadeInUp">Explore Now</button>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">
+                Learn life-saving skills with our interactive courses and AR/VR simulations.
+            </p>
         </div>
         <div class="art-project animate__animated animate__fadeInRight">
-            
+            <img src="https://images.unsplash.com/photo-1600185366980-0d823bd08f9a?auto=format&fit=crop&w=800&q=80" alt="Emergency training simulation">
         </div>
     </section>
+
     <section class="club-cards">
         <div class="mini-project animate__animated animate__zoomIn">
-            <h2>AR/VR Learning</h2>
-            <p>Immersive modules to practice real-life scenarios safely.</p>
+            <h2>Disaster Response 101</h2>
+            <p>Get started with the basics of emergency preparedness.</p>
         </div>
-        <div class="mini-project animate__animated animate__zoomIn">
-            <h2>Courses</h2>
-            <p>Curated lessons and quizzes to level up your skills.</p>
+        <div class="mini-project animate__animated animate__zoomIn animate__delay-1s">
+            <h2>First Aid & Triage</h2>
+            <p>Hands-on modules to practice immediate care.</p>
         </div>
-        <div class="mini-project animate__animated animate__zoomIn">
-            <h2>Quizzes</h2>
-            <p>Test your knowledge with interactive quizzes.</p>
+        <div class="mini-project animate__animated animate__zoomIn animate__delay-2s">
+            <h2>AR/VR Simulations</h2>
+            <p>Immersive training to enhance decision-making under pressure.</p>
         </div>
     </section>
-    <footer class="campfire">
-        <div class="links-row">
-            <a href="index.html">Home</a>
-            <a href="contact.html">Contact</a>
-            <a href="profile.html">Services</a>
-        </div>
-        <div class="social-media">
-            <span>Follow us:
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Instagram</a>
-            </span>
-        </div>
-        <div class="contact-sm">
-            <span>Call us: +91 xxx xxxx xxx</span>
-        </div>
-        <p class="copy-note">© <span id="year"></span> ResQEd — Learn. Practice. Respond.</p>
-    </footer>
+</main>
 
-    <script>
-      // small script to set year
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+<footer class="campfire">
+    <div class="links-row">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="social-media">
+        <span>Follow us:
+            <a href="#" aria-label="Facebook"><i class='bx bxl-facebook-square'></i></a>
+            <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+            <a href="#" aria-label="Instagram"><i class='bx bxl-instagram-alt'></i></a>
+        </span>
+    </div>
+    <div class="contact-sm">
+        <span><i class='bx bxs-phone'></i> Call us: +91 xxx xxxx xxx</span>
+    </div>
+    <p class="copy-note">© <span id="year"></span> ResQEd — Learn. Practice. Respond.</p>
+</footer>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
