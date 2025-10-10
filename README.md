@@ -1,6 +1,7 @@
-# 🛡️ ResQEd – Digital Disaster Preparedness & Response Education System
+# ResQEd – Digital Disaster Preparedness & Response Education System
 
-# “When Knowledge Meets Preparedness.”
+   “When Knowledge Meets Preparedness.”
+   
    Because safety shouldn’t be optional – it should be part of education.
 
 # 📘 Overview
