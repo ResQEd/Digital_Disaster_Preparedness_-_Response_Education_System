@@ -1,11 +1,13 @@
 :root {
-    --primary: #0f172a;
-    --sky: #2563eb;
-    --accent: #06b6d4;
+    --primary: #0f172a; 
+    --sky: #2563eb; 
+    --paper: #fbfdff; 
+    --accent: #06b6d4; 
+    --chalk: #0f172a; 
     --muted: #64748b;
     --radius: 1rem;
+    --glass: rgba(255, 255, 255, 0.6);
     --nav-height: 72px;
-    --glass: rgba(255,255,255,0.6);
 }
 
 * {
@@ -16,7 +18,7 @@
 
 body {
     font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif;
-    color: var(--primary);
+    color: var(--chalk);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -29,7 +31,7 @@ body::before {
     position: fixed;
     inset: 0;
     z-index: -2;
-    background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.1.0&auto=format&fit=crop&w=1200&q=80");
+    background-image: url("https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1200&q=80");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -42,7 +44,7 @@ body::after {
     position: fixed;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(180deg, rgba(4,10,40,0.1), rgba(4,10,40,0.3));
+    background: linear-gradient(180deg, rgba(4, 10, 40, 0.1), rgba(4, 10, 40, 0.3));
     pointer-events: none;
 }
 
@@ -62,15 +64,15 @@ nav.recess {
     padding: 0 6vw;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 6px 30px rgba(2,6,23,0.08);
+    box-shadow: 0 6px 30px rgba(2, 6, 23, 0.08);
     height: var(--nav-height);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .skool-logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--sky);
+    color: var(--primary);
     text-decoration: none;
 }
 
@@ -165,18 +167,12 @@ nav.recess {
     margin-top: 2rem;
 }
 
-
-@media (max-width:900px) {
-    nav.recess {
-        flex-direction: column;
-        height: auto;
-        gap: 0.5rem;
-    }
+@media (max-width: 900px) {
+    nav.recess { flex-direction: column; gap:.6rem; }
 }
 
-@media (max-width:650px) {
+@media (max-width: 650px) {
     body { padding-top: 0; }
     header { position: static; }
-    nav.recess { padding: 1rem; }
-    .campfire { padding: 2rem 4vw; }
+    nav.recess { flex-direction: column; height: auto; padding: 1rem; }
 }
