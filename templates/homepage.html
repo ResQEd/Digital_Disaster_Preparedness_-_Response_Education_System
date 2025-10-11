@@ -30,59 +30,50 @@
 
 <main>
     <section class="hangout">
-        <div class="brain-hub">
-            <h1 class="animate__animated animate__fadeInUp">Welcome to ResQEd</h1>
-            <p class="animate__animated animate__fadeInUp animate__delay-1s">
-                Learn life-saving skills with our interactive courses and quizzes.
-            </p>
+        <div class="brain-hub animate__animated animate__fadeInLeft">
+            <h1>Welcome to ResQEd</h1>
+            <p>Learn life-saving skills with our interactive courses and quizzes.</p>
         </div>
         <div class="disaster-alert-box animate__animated animate__fadeInRight">
             <h2><i class='bx bxs-hot'></i> Latest Alerts</h2>
-            <ul>
-                <li><strong>High Wind Warning:</strong> Coastal areas of Gujarat. Expected landfall in 48 hours.</li>
-                <li><strong>Flood Watch:</strong> Assam region due to heavy monsoon rains.</li>
-                <li><strong>Heatwave Alert:</strong> Northern plains. Temperatures expected to exceed 45°C.</li>
+            <ul id="alert-list">
+                <li>Loading latest alerts...</li>
             </ul>
         </div>
     </section>
 
     <section class="club-cards">
-        <div class="mini-project animate__animated animate__zoomIn">
+        <div class="mini-project scroll-animate" data-animation="animate__zoomIn">
             <h2>ResQEd courses</h2>
-            <p>complete knowledge you should know about a Disaster</p>
-            <br>
+            <p>Complete knowledge you should know about a Disaster.</p>
             <a class="go-try" href="courses.html">View</a>
         </div>
-        <div class="mini-project animate__animated animate__zoomIn animate__delay-1s">
+        <div class="mini-project scroll-animate" data-animation="animate__zoomIn">
             <h2>Disaster quiz</h2>
             <p>Test your knowledge on disaster management and response.</p>
-            <br>
             <a class="go-try" href="quiz.html">View</a>
         </div>
-        <div class="mini-project animate__animated animate__zoomIn animate__delay-1s">
-            <h2>API based alert</h2>
-            <p>Stay informed with real-time disaster alerts and updates.</p>
-            <br>
-            <a class="go-try" href="ar/vr.html">View</a>
+        <div id="api-alert-card" class="mini-project scroll-animate" data-animation="animate__zoomIn">
+            <h2 id="api-alert-title">API Based Alerts</h2>
+            <p id="api-alert-desc">Stay informed with real-time disaster alerts and updates.</p>
+            <a class="go-try" href="#">View Details</a>
         </div>
-        <div class="mini-project animate__animated animate__zoomIn animate__delay-2s">
-            <h2>Student active record</h2>
-            <p>Experience realistic disaster.</p>
-            <br>
+        <div class="mini-project scroll-animate" data-animation="animate__zoomIn">
+            <h2>Student Record</h2>
+            <p>Experience realistic disaster scenarios and track your progress.</p>
             <a class="go-try" href="dashboard.html">View</a>
         </div>
     </section>
 
     <section class="content-section">
         <h1 class="scroll-animate" data-animation="animate__fadeInLeft">About Us</h1>
-        <p class="scroll-animate" data-animation="animate__fadeInRight">ResQEd is an educational platform dedicated to providing comprehensive disaster management training through interactive courses, quizzes, and AR/VR simulations. Our mission is to equip individuals with the knowledge and skills needed to effectively respond to emergencies and save lives. Whether you're a beginner or looking to enhance your existing skills, ResQEd offers a range of resources to help you become a confident and capable responder in times of crisis.</p>
+        <p class="scroll-animate" data-animation="animate__fadeInRight">ResQEd is an educational platform dedicated to providing comprehensive disaster management training through interactive courses, quizzes, and AR/VR simulations. Our mission is to equip individuals with the knowledge and skills needed to effectively respond to emergencies and save lives.</p>
     </section>
     
     <section class="content-section">
         <h1 class="scroll-animate" data-animation="animate__fadeInUp">Our Mission</h1>
-        <p class="scroll-animate" data-animation="animate__fadeInUp">At ResQEd, our mission is to empower individuals with the knowledge and skills necessary to effectively respond to disasters and emergencies. We are committed to providing high-quality, accessible education through interactive courses, quizzes, and AR/VR simulations that cater to learners of all levels. Our goal is to create a safer world by equipping people with the tools they need to save lives and mitigate the impact of disasters in their communities.</p>
+        <p class="scroll-animate" data-animation="animate__fadeInUp">At ResQEd, our mission is to empower individuals with the knowledge and skills necessary to effectively respond to disasters and emergencies. We are committed to providing high-quality, accessible education to create a safer world by equipping people with the tools they need to save lives.</p>
     </section>
-    
     <section class="content-section">
         <h1 class="scroll-animate" data-animation="animate__zoomIn">Our Vision</h1>
         <p class="scroll-animate" data-animation="animate__zoomIn">Our vision at ResQEd is to be a leading global platform for disaster management education, recognized for our innovative approach to learning and commitment to excellence. We aspire to create a world where every individual is prepared and confident in their ability to respond to emergencies, ultimately reducing the loss of life and property during disasters. Through continuous improvement and collaboration with experts in the field, we aim to expand our reach and impact, fostering a culture of preparedness and resilience in communities worldwide.</p>
@@ -102,6 +93,8 @@
         <h1 class="scroll-animate" data-animation="animate__fadeInUp">Get Involved</h1>
         <p class="scroll-animate" data-animation="animate__fadeInUp">We invite you to join the ResQEd community and take an active role in enhancing your disaster management skills. Whether you're a student, professional, or simply someone interested in learning more about emergency response, there are many ways to get involved. Start by exploring our interactive courses and quizzes to build your knowledge base. Participate in our AR/VR simulations to gain hands-on experience in realistic scenarios. Share your learning journey with friends and family to promote awareness and preparedness in your community. Additionally, consider providing feedback on our courses to help us improve and tailor our offerings to better meet your needs. Together, we can create a more resilient world, one learner at a time.</p>
     </section>
+
+    
 </main>
 
 <footer class="campfire">
@@ -124,6 +117,7 @@
 </footer>
 
 <script>
+    
     document.getElementById('year').textContent = new Date().getFullYear();
     const scrollElements = document.querySelectorAll(".scroll-animate");
 
@@ -147,28 +141,80 @@
    
     document.querySelectorAll('.mini-project').forEach(el => {
         const tiltFactor = 10; 
-
         el.addEventListener('mousemove', e => {
             const r = el.getBoundingClientRect();
-            
             const x = e.clientX - r.left;
-            const y = e.clientY - r.top;  
-            
-            
+            const y = e.clientY - r.top;   
             const rotateY = tiltFactor * ((x / r.width) - 0.5);
             const rotateX = -1 * tiltFactor * ((y / r.height) - 0.5);
-            
-            
             el.style.setProperty('--rotateX', `${rotateX}deg`);
             el.style.setProperty('--rotateY', `${rotateY}deg`);
         });
-        
         el.addEventListener('mouseleave', () => {
-          
             el.style.setProperty('--rotateX', '0deg');
             el.style.setProperty('--rotateY', '0deg');
         });
     });
+
+ 
+    async function getAlertData() {
+        
+        const apiKey = '15882d9a3d974911a68215517251110'; 
+    
+
+        const city = 'delhi';
+        const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=1&aqi=no&alerts=yes`;
+
+        const heroAlertList = document.getElementById('alert-list');
+        const cardAlertTitle = document.getElementById('api-alert-title');
+        const cardAlertDesc = document.getElementById('api-alert-desc');
+        const cardAlert = document.getElementById('api-alert-card');
+
+        try {
+            const response = await fetch(apiUrl);
+            if (!response.ok) throw new Error('Network response failed.');
+            
+            const data = await response.json();
+
+            heroAlertList.innerHTML = '';
+            let hasAlerts = false;
+            if (data.alerts && data.alerts.alert.length > 0) {
+                hasAlerts = true;
+                data.alerts.alert.forEach(alert => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>${alert.headline}</strong>`;
+                    heroAlertList.appendChild(li);
+                });
+            }
+            if (!hasAlerts) {
+                const li = document.createElement('li');
+                li.textContent = `No active weather alerts for ${city}.`;
+                heroAlertList.appendChild(li);
+            }
+
+            // --- Logic for the "API based alert" Card ---
+            if (hasAlerts) {
+                const mainAlert = data.alerts.alert[0];
+                cardAlertTitle.textContent = mainAlert.event;
+                cardAlertDesc.textContent = mainAlert.headline;
+                cardAlert.classList.add('alert-active');
+            } else {
+                cardAlertTitle.textContent = "No Active Alerts";
+                cardAlertDesc.textContent = "The system is clear. Check back later for real-time updates.";
+                cardAlert.classList.remove('alert-active');
+            }
+
+        } catch (error) {
+            console.error("Failed to fetch alert data:", error);
+            const errorMessage = 'Could not load alerts.';
+            heroAlertList.innerHTML = `<li>${errorMessage}</li>`;
+            cardAlertTitle.textContent = "Service Unavailable";
+            cardAlertDesc.textContent = "Could not connect to the alert service.";
+        }
+    }
+
+    
+    getAlertData();
 </script>
 
 </body>
