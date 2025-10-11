@@ -67,7 +67,7 @@
     line-height: 1.6;
 }
 
-/* ✅ Added for bullet styling */
+
 .accordion-panel h4 {
     color: #334155;
     font-size: 1rem;
@@ -93,7 +93,6 @@
     color: #1e40af;
     transition: color 0.2s ease;
 }
-/* ✅ End bullet styling */
 
 .accordion-panel > p {
     color: var(--muted);
