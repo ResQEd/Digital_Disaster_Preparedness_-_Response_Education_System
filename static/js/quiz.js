@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         quizBox.style.display = 'block';
         quizBox.classList.add('fadeIn');
         
-        let topicName = topic.charAt(0).toUpperCase() + topic.slice(1).replace('fire', ' Fire');
+        let topicName = topic.charAt(0).toUpperCase() + topic.slice(1).replace('fire', ' Fire').replace('cyclones', 'Cyclone');
         quizTitle.textContent = `${topicName} — ${difficulty.toUpperCase()} Quiz`;
 
         showQuestion();
@@ -148,12 +148,13 @@ document.addEventListener('DOMContentLoaded', () => {
         resultTextEl.textContent = message;
 
         saveQuizHistory();
+        awardQuizBadges(); // NEW FUNCTION CALL
     }
 
     function saveQuizHistory() {
         const topic = topicSelect.value;
         const difficulty = difficultySelect.value;
-        const topicName = topic.charAt(0).toUpperCase() + topic.slice(1).replace('fire', ' Fire');
+        const topicName = topic.charAt(0).toUpperCase() + topic.slice(1).replace('fire', ' Fire').replace('cyclones', 'Cyclone');
 
         const resultData = {
             name: `${topicName} (${difficulty})`,
@@ -164,6 +165,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const history = JSON.parse(localStorage.getItem('ResQEdQuizHistory')) || [];
         history.unshift(resultData);
         localStorage.setItem('ResQEdQuizHistory', JSON.stringify(history));
+    }
+
+    function awardQuizBadges() {
+        const topic = topicSelect.value;
+        const difficulty = difficultySelect.value;
+        const topicName = topic.charAt(0).toUpperCase() + topic.slice(1).replace('fire', ' Fire').replace('cyclones', 'Cyclone');
+        
+        let earnedBadges = JSON.parse(localStorage.getItem('ResQEdQuizBadges')) || {};
+
+        const badgeDetails = {
+            quizName: topicName,
+            difficulty: difficulty.charAt(0).toUpperCase() + difficulty.slice(1)
+        };
+
+        if (score >= 9) {
+            earnedBadges.gold = badgeDetails;
+        } else if (score >= 7) {
+            earnedBadges.silver = badgeDetails;
+        } else if (score >= 5) {
+            earnedBadges.bronze = badgeDetails;
+        }
+
+        localStorage.setItem('ResQEdQuizBadges', JSON.stringify(earnedBadges));
     }
 
     function restartQuiz() {
