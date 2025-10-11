@@ -1,4 +1,3 @@
-
 .hangout {
     display: flex;
     gap: 4vw;
@@ -12,9 +11,6 @@
 .brain-hub {
     max-width: 520px;
 }
-
-
-
 
 .course-accordion {
     padding: 2vw 6vw 5vw 6vw;
