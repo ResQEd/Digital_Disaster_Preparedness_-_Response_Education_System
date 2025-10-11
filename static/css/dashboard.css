@@ -58,7 +58,6 @@ body::after {
     font-size: 1.5rem;
 }
 
-/* === Component Styling === */
 .profile-card { grid-area: profile; text-align: center; }
 .profile-card img {
     width: 120px;
@@ -197,7 +196,6 @@ body::after {
 @keyframes glow { 50% { text-shadow: 0 0 25px rgba(0, 255, 255, 1); } }
 @keyframes glint { 20%, 80% { transform: scale(1.1) rotate(3deg); text-shadow: 0 0 15px rgba(255,255,255,0.8); } 30%, 70% { transform: scale(1); text-shadow: none; } }
 
-/* === Responsive Layout === */
 @media (max-width: 1200px) {
     .dashboard-grid {
         grid-template-columns: 1fr 1fr;
@@ -219,4 +217,26 @@ body::after {
     .course-list { grid-template-columns: 1fr; }
     .dashboard-container { padding: 1rem; }
     .card { padding: 1rem; }
+}
+
+.badge-grid {
+    
+    max-height: 160px; 
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.badge-grid::-webkit-scrollbar {
+    width: 8px;
+}
+.badge-grid::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.badge-grid::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+.badge-grid::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
 }
