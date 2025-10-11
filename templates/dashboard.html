@@ -23,6 +23,7 @@
             <a href="homepage.html">Home</a>
             <a href="courses.html">Courses</a>  
             <a href="contact.html">Contact</a>
+            <button class="profile-btn" onclick="location.href='dashboard.html'">👤</button>
         </div>
     </nav>
 </header>
@@ -41,7 +42,7 @@
                 <h3 class="card-title"><i class='bx bxs-bar-chart-alt-2'></i>Overall Progress</h3>
                 <p>You're doing great! Keep up the momentum to become a certified responder.</p>
                 <div class="progress-bar-container">
-                    <div class="progress-bar" style="width: 75%;">75%</div>
+                    <div class="progress-bar" style="width: 0%;">0%</div>
                 </div>
                 <div class="card profile-card" style="padding:0; box-shadow:none; border:none; margin-top:1rem;">
                     <button id="resetProgressBtn" class="reset-button">Reset All Progress</button>
@@ -53,46 +54,62 @@
                 <div class="course-list">
                     <div class="course-item">
                         <h4><i class='bx bxs-droplet'></i>Floods</h4>
-                        <div class="progress-bar-container"><div class="progress-bar" style="width: 100%;"></div></div>
-                        <a href="courses.html">Review <i class='bx bx-right-arrow-alt'></i></a>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
+                        <a href="../templates/courses/flood.html">Start Now <i class='bx bx-right-arrow-alt'></i></a>
                     </div>
                     <div class="course-item">
                         <h4><i class='bx bxs-buildings'></i>Earthquakes</h4>
-                        <div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div>
-                        <a href="courses.html">Continue <i class='bx bx-right-arrow-alt'></i></a>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
+                        <a href="../templates/courses/earthquake.html">Start Now <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                     <div class="course-item">
+                        <h4><i class='bx bxs-landscape'></i>Landslides</h4>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
+                        <a href="../templates/courses/landslide.html">Start Now <i class='bx bx-right-arrow-alt'></i></a>
                     </div>
                     <div class="course-item">
                         <h4><i class='bx bxs-hot'></i>Forest Fires</h4>
-                        <div class="progress-bar-container"><div class="progress-bar" style="width: 50%;"></div></div>
-                        <a href="courses.html">Continue <i class='bx bx-right-arrow-alt'></i></a>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
+                        <a href="../templates/courses/forest_fire.html">Start Now <i class='bx bx-right-arrow-alt'></i></a>
                     </div>
                     <div class="course-item">
-                        <h4><i class='bx bxs-landscape'></i>Landslides</h4>
+                        <h4><i class='bx bxs-water'></i>Tsunami</h4>
                         <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
-                        <a href="courses.html">Start Now <i class='bx bx-right-arrow-alt'></i></a>
+                        <a href="../templates/courses/tsunami.html">Start Now <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                    <div class="course-item">
+                        <h4><i class='bx bxs-tornado'></i>Cyclones</h4>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
+                        <a href="../templates/courses/cyclone.html">Start Now <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                    <div class="course-item">
+                        <h4><i class='bx bxs-flask'></i>Chemical</h4>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
+                        <a href="../templates/courses/chemical.html">Start Now <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                    <div class="course-item">
+                        <h4><i class='bx bxs-virus'></i>Biological</h4>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
+                        <a href="../templates/courses/biological.html">Start Now <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                    <div class="course-item">
+                        <h4><i class='bx bxs-radiation'></i>Nuclear</h4>
+                        <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
+                        <a href="../templates/courses/nuclear.html">Start Now <i class='bx bx-right-arrow-alt'></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="card badges-card">
                 <h3 class="card-title"><i class='bx bxs-badge-check'></i>My Badges</h3>
-                
                 <div class="badge-grid">
-                    <div class="animated-badge course-complete-badge">
+                    <div class="animated-badge course-complete-badge locked">
                         <div class="badge-icon"><i class='bx bxs-graduation'></i></div>
                         <h4 class="badge-title">Certified Learner</h4>
                     </div>
-                    <div class="animated-badge quiz-gold-badge">
+                    <div class="animated-badge quiz-gold-badge locked">
                         <div class="badge-icon"><i class='bx bxs-medal'></i></div>
                         <h4 class="badge-title">Quiz Gold</h4>
-                    </div>
-                    <div class="animated-badge quiz-silver-badge locked">
-                        <div class="badge-icon"><i class='bx bxs-medal'></i></div>
-                        <h4 class="badge-title">Quiz Silver</h4>
-                    </div>
-                     <div class="animated-badge quiz-bronze-badge locked">
-                        <div class="badge-icon"><i class='bx bxs-medal'></i></div>
-                        <h4 class="badge-title">Quiz Bronze</h4>
                     </div>
                 </div>
             </div>
@@ -100,28 +117,9 @@
             <div class="card quiz-history-card">
                 <h3 class="card-title"><i class='bx bx-task'></i>Quiz History</h3>
                 <table class="quiz-history-table">
-                    <thead>
-                        <tr>
-                            <th>Quiz Name</th>
-                            <th>Date</th>
-                            <th>Score</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr>
-                            <td>Flood Prevention Quiz</td>
-                            <td>11 Oct, 2025</td>
-                            <td>95%</td>
-                        </tr>
-                        <tr>
-                            <td>Earthquake Safety Basics</td>
-                            <td>11 Oct, 2025</td>
-                            <td>80%</td>
-                        </tr>
-                        <tr>
-                            <td>Disaster Types Quiz</td>
-                            <td>11 Oct, 2025</td>
-                            <td>100%</td>
+                            <td colspan="3" style="text-align:center;">No quizzes taken yet.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -141,10 +139,25 @@
 </main>
 
 <footer>
+    <div class="links-row">
+        <a href="homepage.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="social-media">
+        <span>Follow us:
+            <a href="#" aria-label="Facebook"><i class='bx bxl-facebook-square'></i></a>
+            <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+            <a href="#" aria-label="Instagram"><i class='bx bxl-instagram-alt'></i></a>
+        </span>
+    </div>
+    <div class="contact-sm">
+        <span><i class='bx bxs-phone'></i> Call us: +91 xxx xxxx xxx</span>
+    </div>
+    <p class="copy-note">© <span id="year"></span> ResQEd - All Rights Reserved.</p>
 </footer>
 
 <script src="../static/js/script.js"></script>
 
 </body>
 </html>
-

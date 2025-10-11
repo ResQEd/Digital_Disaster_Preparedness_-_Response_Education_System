@@ -94,6 +94,10 @@
   transition: background 0.3s;
 }
 
+.module-complete button:hover {
+  background-color: #388e3c;
+}
+
 .accordion-sub-header {
     padding: 0.8rem 1rem;
 }
