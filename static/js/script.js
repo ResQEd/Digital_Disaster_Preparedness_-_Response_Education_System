@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const PROGRESS_KEY = 'ResQEdProgressData';
 
-    // Defines the total number of modules for each course
     const COURSE_TOTALS = {
         floods: 7,
         earthquakes: 7,
@@ -14,27 +13,23 @@ document.addEventListener('DOMContentLoaded', () => {
         nuclear: 11
     };
 
-    // Retrieves progress from browser's local storage
     function getProgress() {
         const data = localStorage.getItem(PROGRESS_KEY);
         if (data) {
             const progress = JSON.parse(data);
-            progress.courseTotals = COURSE_TOTALS; // Ensures totals are always up-to-date
+            progress.courseTotals = COURSE_TOTALS;
             return progress;
         }
-        // Creates a new progress object if one doesn't exist
         return {
             moduleStatus: {},
             courseTotals: COURSE_TOTALS
         };
     }
 
-    // Saves the current progress to local storage
     function saveProgress(progressData) {
         localStorage.setItem(PROGRESS_KEY, JSON.stringify(progressData));
     }
 
-    // Identifies the course key (e.g., 'floods') from a given title
     function getCourseKeyFromTitle(title) {
         const lowerCaseTitle = title.toLowerCase();
         if (lowerCaseTitle.includes('flood')) return 'floods';
@@ -49,47 +44,39 @@ document.addEventListener('DOMContentLoaded', () => {
         return null;
     }
 
-    // Gets the course key for the current page by reading the H1 tag
     function getPageCourseKey() {
         const pageTitleEl = document.querySelector('h1');
         if (!pageTitleEl) return null;
         return getCourseKeyFromTitle(pageTitleEl.textContent);
     }
 
-    // --- LOGIC FOR COURSE PAGES ---
-    // This block runs only on pages with a course accordion
     const courseAccordion = document.querySelector('.course-accordion');
     if (courseAccordion) {
         const progress = getProgress();
-        const pageCourseKey = getPageCourseKey(); // Gets the course for the current page, e.g., 'floods'
+        const pageCourseKey = getPageCourseKey();
 
         if (pageCourseKey) {
             const completeButtons = courseAccordion.querySelectorAll('.module-complete button');
 
             completeButtons.forEach((button, index) => {
-                // Creates a unique ID for each button, e.g., 'floods_module_0'
                 const moduleId = `${pageCourseKey}_module_${index}`;
                 
-                // If the module is already marked complete, disable the button
                 if (progress.moduleStatus[moduleId]) {
                     button.textContent = '✅ Completed';
                     button.disabled = true;
                 }
 
-                // Adds the click event listener to the button
                 button.addEventListener('click', () => {
                     button.textContent = '✅ Completed';
                     button.disabled = true;
-                    progress.moduleStatus[moduleId] = true; // Updates the status
-                    saveProgress(progress); // Saves the change
+                    progress.moduleStatus[moduleId] = true;
+                    saveProgress(progress);
                     alert('Progress saved!');
                 });
             });
         }
     }
 
-    // --- LOGIC FOR DASHBOARD PAGE ---
-    // This block runs only on the dashboard page
     const dashboardContainer = document.querySelector('.dashboard-container');
     if (dashboardContainer) {
         const resetButton = document.getElementById('resetProgressBtn');
@@ -107,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const completedCounts = {};
         Object.keys(COURSE_TOTALS).forEach(key => { completedCounts[key] = 0; });
 
-        // Count completed modules for each course
         for (const moduleId in progress.moduleStatus) {
             if (progress.moduleStatus[moduleId]) {
                 const courseKey = moduleId.split('_')[0];
@@ -117,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Update individual course progress bars on the dashboard
         for (const courseKey in completedCounts) {
             const completed = completedCounts[courseKey];
             const total = progress.courseTotals[courseKey];
@@ -144,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Calculate and update the overall progress bar
         let totalCompleted = Object.values(completedCounts).reduce((a, b) => a + b, 0);
         let totalModules = Object.values(progress.courseTotals).reduce((a, b) => a + b, 0);
 
