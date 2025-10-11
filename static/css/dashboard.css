@@ -274,6 +274,38 @@ body {
     transform: skewX(-30deg);
     animation: shimmer 5s infinite;
 }
+
+.quiz-history-table {
+    display: block;
+}
+
+.quiz-history-table thead, .quiz-history-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.quiz-history-table tbody {
+    display: block;
+    max-height: 165px;
+    overflow-y: auto;
+}
+
+.quiz-history-table tbody::-webkit-scrollbar {
+    width: 8px;
+}
+.quiz-history-table tbody::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.quiz-history-table tbody::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+.quiz-history-table tbody::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
 .course-complete-badge { background: linear-gradient(135deg, #2c3e50, #4b79a1); color: #fff; }
 .course-complete-badge .badge-icon { color: #e0f7fa; animation: glow 2.5s ease-in-out infinite; }
 .quiz-bronze-badge { background: linear-gradient(135deg, #8c5a2b, #cd7f32); color: #fff; }
