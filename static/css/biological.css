@@ -11,6 +11,7 @@
 .brain-hub {
     max-width: 520px;
 }
+
 .course-accordion {
     padding: 2vw 6vw 5vw 6vw;
     max-width: 900px;
@@ -66,6 +67,34 @@
     line-height: 1.6;
 }
 
+/* ✅ Added for bullet styling */
+.accordion-panel h4 {
+    color: #334155;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.accordion-panel ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: #475569;
+    line-height: 1.6;
+}
+
+.accordion-panel li {
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+}
+
+.accordion-panel li:hover {
+    color: #1e40af;
+    transition: color 0.2s ease;
+}
+/* ✅ End bullet styling */
+
 .accordion-panel > p {
     color: var(--muted);
     margin-bottom: 1.5rem;
@@ -102,7 +131,7 @@
     padding: 0.8rem 1rem;
 }
 .accordion-sub-header h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #334155;
     margin: 0;
@@ -144,6 +173,7 @@
         font-size: 1.1rem;
     }
 }
+
 .profile-btn {
     width: 40px;
     height: 40px;
