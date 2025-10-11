@@ -111,13 +111,13 @@
         padding: 0 4vw 5vw 4vw;
     }
 }
+
 .scroll-animate {
     opacity: 0;
     transition: opacity 0.5s ease;
 }
 
-        
 .content-section {
     padding: 2rem 6vw;
-    color: white; /* Add some spacing between sections */
+    color: white;
 }

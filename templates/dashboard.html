@@ -22,7 +22,8 @@
         <div class="squad-links">
             <a href="homepage.html">Home</a>
             <a href="courses.html">Courses</a> 
-            <a href="#">My Dashboard</a> <a href="contact.html">Contact</a>
+            <a href="dashboard.html" class="active">My Dashboard</a> 
+            <a href="contact.html">Contact</a>
         </div>
     </nav>
 </header>
@@ -33,7 +34,7 @@
             
             <div class="card profile-card">
                 <img src="https://i.pravatar.cc/150?u=priya" alt="User Profile Picture">
-                <h2>Priya Sharma</h2>
+                <h2>tester</h2>
                 <p>Trainee Responder</p>
             </div>
 
@@ -41,9 +42,9 @@
                 <h3 class="card-title"><i class='bx bxs-bar-chart-alt-2'></i>Overall Progress</h3>
                 <p>You're doing great! Keep up the momentum to become a certified responder.</p>
                 <div class="progress-bar-container">
-                    <div class="progress-bar">75%</div>
+                    <div class="progress-bar" style="width: 75%;">75%</div>
                 </div>
-                    <div class="card profile-card">
+                <div class="card profile-card" style="padding:0; box-shadow:none; border:none; margin-top:1rem;">
                     <button id="resetProgressBtn" class="reset-button">Reset All Progress</button>
                 </div>
             </div>
@@ -76,22 +77,23 @@
 
             <div class="card badges-card">
                 <h3 class="card-title"><i class='bx bxs-badge-check'></i>My Badges</h3>
+                <!-- REPLACED STATIC BADGES WITH NEW ANIMATED BADGES -->
                 <div class="badge-grid">
-                    <div class="badge-item">
-                        <img src="https://img.icons8.com/plasticine/100/water.png" alt="Flood Ready Badge">
-                        <p>Flood Ready</p>
+                    <div class="animated-badge course-complete-badge">
+                        <div class="badge-icon"><i class='bx bxs-graduation'></i></div>
+                        <h4 class="badge-title">Certified Responder</h4>
                     </div>
-                    <div class="badge-item">
-                        <img src="https://img.icons8.com/plasticine/100/epicenter.png" alt="Earthquake Safe Badge">
-                        <p>Earthquake Safe</p>
+                    <div class="animated-badge quiz-gold-badge">
+                        <div class="badge-icon"><i class='bx bxs-medal'></i></div>
+                        <h4 class="badge-title">Quiz Gold</h4>
                     </div>
-                    <div class="badge-item locked">
-                        <img src="https://img.icons8.com/plasticine/100/forest.png" alt="Fire Warden Badge">
-                        <p>Fire Warden</p>
+                    <div class="animated-badge quiz-silver-badge locked">
+                        <div class="badge-icon"><i class='bx bxs-medal'></i></div>
+                        <h4 class="badge-title">Quiz Silver</h4>
                     </div>
-                    <div class="badge-item locked">
-                        <img src="https://img.icons8.com/plasticine/100/landslide.png" alt="Slope Guardian Badge">
-                        <p>Slope Guardian</p>
+                     <div class="animated-badge quiz-bronze-badge locked">
+                        <div class="badge-icon"><i class='bx bxs-medal'></i></div>
+                        <h4 class="badge-title">Quiz Bronze</h4>
                     </div>
                 </div>
             </div>
@@ -146,3 +148,4 @@
 
 </body>
 </html>
+

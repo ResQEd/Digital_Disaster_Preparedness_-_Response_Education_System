@@ -1,15 +1,14 @@
+/* --- BASE & DASHBOARD LAYOUT STYLES --- */
 body {
     background-color: #f4f7fe;
     color: var(--primary);
     font-family: 'Poppins', sans-serif;
 }
-
 .dashboard-container {
     padding: 2rem;
     max-width: 1400px;
     margin: 0 auto;
 }
-
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -18,8 +17,7 @@ body {
         "courses courses badges"
         "quiz-history quiz-history emergency";
     gap: 1.5rem;
-    }
-
+}
 .card {
     background-color: #fff;
     border-radius: var(--radius);
@@ -27,7 +25,6 @@ body {
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
     border: 1px solid #e0e4f6;
 }
-
 .card-title {
     font-size: 1.25rem;
     font-weight: 700;
@@ -37,22 +34,7 @@ body {
     gap: 0.5rem;
 }
 
-.reset-button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    margin-top: 15px;
-    transition: background-color 0.3s;
-}
-
-.reset-button:hover {
-    background-color: #c0392b;
-}
-
+/* --- CARD-SPECIFIC STYLES --- */
 .profile-card {
     grid-area: profile;
     text-align: center;
@@ -85,9 +67,9 @@ body {
     border-radius: 20px;
     height: 25px;
     margin-top: 0.5rem;
+    overflow: hidden;
 }
 .progress-bar {
-    width: 75%;
     height: 100%;
     background: linear-gradient(90deg, var(--accent), var(--sky));
     border-radius: 20px;
@@ -95,9 +77,8 @@ body {
     color: white;
     font-weight: 600;
     line-height: 25px;
+    transition: width 0.5s ease;
 }
-
-       
 .course-progress-card {
     grid-area: courses;
 }
@@ -121,7 +102,8 @@ body {
 }
 .course-item .progress-bar {
     line-height: 8px;
-    }
+    font-size: 0; /* Hide text on small bars */
+}
 .course-item a {
     display: inline-block;
     margin-top: 1rem;
@@ -129,29 +111,14 @@ body {
     color: var(--accent);
     text-decoration: none;
 }
-.course-item a i { vertical-align: middle; }
 .badges-card {
     grid-area: badges;
-    }
+}
 .badge-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     gap: 1rem;
-    text-align: center;
-}
-.badge-item img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 0.5rem;
-}
-.badge-item.locked {
-    filter: grayscale(100%);
-    opacity: 0.5;
-}
-.badge-item p {
-    font-size: 0.8rem;
-    font-weight: 500;
-    margin: 0;
+    justify-content: center;
 }
 .quiz-history-card {
     grid-area: quiz-history;
@@ -159,7 +126,7 @@ body {
 .quiz-history-table {
     width: 100%;
     border-collapse: collapse;
-    }
+}
 .quiz-history-table th, .quiz-history-table td {
     padding: 0.75rem;
     text-align: left;
@@ -167,56 +134,143 @@ body {
 }
 .quiz-history-table th { font-weight: 600; }
 .quiz-history-table td:last-child { font-weight: 700; color: var(--primary); }
-
 .emergency-card {
     grid-area: emergency;
     background: linear-gradient(45deg, #ffdde1, #ee9ca7);
     color: #4c1d24;
 }
-.emergency-card .card-title {
-    color: #d32f2f;
+.emergency-card .card-title { color: #d32f2f; }
+.emergency-card ul { list-style: none; padding: 0; margin: 0; }
+.emergency-card li { margin-bottom: 0.75rem; }
+.emergency-card a { text-decoration: none; color: #4c1d24; font-weight: 600; }
+.emergency-card i { font-size: 1.2rem; vertical-align: middle; margin-right: 0.5rem; }
+
+/* --- CONTACT BUTTON IN HEADER --- */
+.contact-btn {
+    background: linear-gradient(90deg, var(--accent), var(--sky));
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
-.emergency-card ul {
-    list-style: none;
-    padding: 0;
+.contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* --- RESET BUTTON AND MODAL STYLES --- */
+.reset-button {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    align-self: flex-start;
+    transition: background-color 0.3s;
+}
+.reset-button:hover {
+    background-color: #dc2626;
+}
+
+/* --- ANIMATED BADGE STYLES (Resized for Dashboard) --- */
+.animated-badge {
+    position: relative;
+    width: 100%; 
+    height: 140px;
+    border-radius: var(--radius);
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+.animated-badge:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.animated-badge .badge-icon {
+    font-size: 3rem; 
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+.animated-badge .badge-title {
+    font-size: 0.85rem;
+    font-weight: 600;
     margin: 0;
 }
-.emergency-card li { margin-bottom: 0.75rem; }
-.emergency-card a {
-    text-decoration: none;
-    color: #4c1d24;
-    font-weight: 600;
+.animated-badge.locked {
+    filter: grayscale(100%);
+    opacity: 0.6;
 }
-.emergency-card i {
-    font-size: 1.2rem;
-    vertical-align: middle;
-    margin-right: 0.5rem;
-    }
+.animated-badge.locked:hover {
+    filter: grayscale(80%);
+    opacity: 0.8;
+}
+.animated-badge::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 75%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: skewX(-30deg);
+    animation: shimmer 5s infinite;
+}
+.course-complete-badge { background: linear-gradient(135deg, #2c3e50, #4b79a1); color: #fff; }
+.course-complete-badge .badge-icon { color: #e0f7fa; animation: glow 2.5s ease-in-out infinite; }
+.quiz-bronze-badge { background: linear-gradient(135deg, #8c5a2b, #cd7f32); color: #fff; }
+.quiz-silver-badge { background: linear-gradient(135deg, #a8a8a8, #d7d7d7); color: var(--primary); }
+.quiz-gold-badge { background: linear-gradient(135deg, #ffb300, #ffd700); color: #4a3000; }
+
+.quiz-bronze-badge .badge-icon,
+.quiz-silver-badge .badge-icon,
+.quiz-gold-badge .badge-icon {
+    animation: glint 3s ease-in-out infinite;
+}
+
+@keyframes shimmer { 0% { left: -100%; } 100% { left: 200%; } }
+@keyframes glow { 0%, 100% { text-shadow: 0 0 10px rgba(224, 247, 250, 0.6); } 50% { text-shadow: 0 0 25px rgba(224, 247, 250, 1); } }
+@keyframes glint {
+    0%, 100% { transform: scale(1); } 20% { transform: scale(1.1) rotate(3deg); text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); }
+    30%, 70% { transform: scale(1) rotate(0); text-shadow: none; } 80% { transform: scale(1.1) rotate(-3deg); text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); }
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
 @media (max-width: 1200px) {
-.dashboard-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-        "profile progress-overview"
-        "courses courses"
-        "badges quiz-history"
-        "emergency emergency";
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "profile progress-overview"
+            "courses courses"
+            "badges quiz-history"
+            "emergency emergency";
     }
 }
 
 @media (max-width: 768px) {
-.dashboard-grid {
-grid-template-columns: 1fr;
-grid-template-areas:
-    "profile"
-    "progress-overview"
-    "courses"
-    "badges"
-    "quiz-history"
-    "emergency";
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "profile"
+            "progress-overview"
+            "courses"
+            "badges"
+            "quiz-history"
+            "emergency";
+    }
+    .course-list {
+        grid-template-columns: 1fr;
+    }
+    .dashboard-container { padding: 1rem; }
+    .card { padding: 1rem; }
 }
-.course-list {
-    grid-template-columns: 1fr;
-}
-.dashboard-container { padding: 1rem; }
-.card { padding: 1rem; }
-}
+
