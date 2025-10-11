@@ -1,50 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ResQEd — Quiz</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResQEd — Quiz</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+ 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/homepage.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/homepage.css">
+
+  <style>
+    :root {
+      --primary: #007bff;
+      --success: #28a745;
+      --danger: #dc3545;
+      --dark: #343a40;
+      --light: #f8f9fa;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main.quiz-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 40px 20px;
+    }
+
+    .quiz-box {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      padding: 30px 40px;
+      max-width: 1000px;
+      width: 100%;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .quiz-box h2, .quiz-box h3 {
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+
+    select, button {
+      margin: 10px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 16px;
+      border: 1px solid var(--primary);
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: 0.3s;
+    }
+
+    select:focus, button:focus {
+      outline: none;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .options button {
+      display: block;
+      width: 100%;
+      margin: 6px 0;
+      padding: 12px;
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      background: white;
+      color: var(--primary);
+      transition: all 0.3s;
+    }
+
+    .options button:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    #feedback {
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    #next-btn {
+      margin-top: 15px;
+      padding: 10px 25px;
+      background: var(--success);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      display: none;
+      font-size: 16px;
+    }
+
+    #timer {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: var(--primary);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    #result-box { display: none; }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .fadeIn {
+      animation: fadeIn 0.4s ease;
+    }
+  </style>
 </head>
 
 <body>
-
 <header>
-    <nav class="recess">
-        <a class="skool-logo" href="homepage.html">ResQEd</a>
-        <div class="squad-links">
-            <a href="homepage.html" class="active">Home</a>
-            <a href="courses.html">Courses</a>
-            <a href="contact.html">Contact</a>
-        </div>
-    </nav>
+  <nav class="recess">
+    <a class="skool-logo" href="homepage.html">ResQEd</a>
+    <div class="squad-links">
+      <a href="homepage.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="quiz.html" class="active">Quiz</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
 </header>
 
+<main class="quiz-section">
+  <div class="quiz-box fadeIn" id="start-box">
+    <h2>ResQEd Disaster Preparedness Quiz</h2>
+    <p>Select a topic and difficulty level to begin:</p>
+
+    <label>Disaster Type:</label>
+    <select id="topic">
+      <option value="earthquake">Earthquake</option>
+      <option value="flood">Flood</option>
+    </select>
+
+    <label>Difficulty:</label>
+    <select id="difficulty">
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+
+    <br>
+    <button onclick="startQuiz()">Start Quiz</button>
+  </div>
+
+  <div class="quiz-box fadeIn" id="quiz-box" style="display:none;">
+    <div id="timer">Time: <span id="time">60</span>s</div>
+    <h3 id="quiz-title"></h3>
+    <p id="question"></p>
+    <div class="options" id="options"></div>
+    <p id="feedback"></p>
+    <button id="next-btn" onclick="nextQuestion()">Next</button>
+  </div>
+
+  <div class="quiz-box fadeIn" id="result-box">
+    <h2>Quiz Completed!</h2>
+    <p id="result-text"></p>
+    <button onclick="restartQuiz()">Play Again</button>
+  </div>
+</main>
+
 <footer class="campfire">
-    <div class="links-row">
-        <a href="index.html">Home</a>
-        <a href="courses.html">Courses</a>
-        <a href="contact.html">Contact</a>
-    </div>
-    <div class="social-media">
-        <span>Follow us:
-            <a href="#" aria-label="Facebook"><i class='bx bxl-facebook-square'></i></a>
-            <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
-            <a href="#" aria-label="Instagram"><i class='bx bxl-instagram-alt'></i></a>
-        </span>
-    </div>
-    <div class="contact-sm">
-        <span><i class='bx bxs-phone'></i> Call us: +91 xxx xxxx xxx</span>
-    </div>
-    <p class="copy-note">© <span id="year"></span> copyright</p>
+  <div class="links-row">
+    <a href="index.html">Home</a>
+    <a href="courses.html">Courses</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <p class="copy-note">© <span id="year"></span> ResQEd</p>
 </footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const questionBank = {
+  earthquake: {
+    easy: [
+      {q:"Is an earthquake the shaking of the ground? (True/False)", options:["True","False"], answer:"True"},
+      {q:"Is building collapse the main danger? (True/False)", options:["True","False"], answer:"True"},
+      {q:"Should you use an elevator during an earthquake? (Yes/No)", options:["Yes","No"], answer:"No"},
+      {q:"Should you drop, cover, and hold on? (Yes/No)", options:["Yes","No"], answer:"Yes"},
+    ],
+    medium: [
+      {q:"Which scale measures energy released at the source?", options:["MMI","Richter","Moment Magnitude","Seismic Zone"], answer:"Moment Magnitude"},
+      {q:"India is divided into how many seismic zones?", options:["2","3","4","5"], answer:"4"},
+      {q:"The Koyna region's seismicity is due to?", options:["Mining","Plate Tectonics","Reservoir-Induced","Volcanic"], answer:"Reservoir-Induced"},
+      {q:"What is the safest place during an earthquake?", options:["Under a table","Near windows","In a doorway","On a balcony"], answer:"Under a table"},
+    ],
+    hard: [
+      {q:"What causes stress along the Himalayas?", options:["Volcano","Indian Plate pushing under Eurasian","Reservoir water pressure","Deep focus quakes"], answer:"Indian Plate pushing under Eurasian"},
+      {q:"What is the max depth of shallow focus quakes?", options:[">70km","<70km","200km","500km"], answer:"<70km"},
+      {q:"Which area is NOT in Zone V?", options:["NE India","Andaman","Kashmir","North Bihar"], answer:"North Bihar"},
+      {q:"What is a 'seismic gap'?", options:["No earthquakes","Area between quakes","High quake frequency","Low quake frequency"], answer:"Area between quakes"},
+    ]
+  },
+  flood: {
+    easy: [
+      {q:"Can floods occur after heavy rainfall? (True/False)", options:["True","False"], answer:"True"},
+      {q:"Is standing in moving flood water safe? (Yes/No)", options:["Yes","No"], answer:"No"},
+      {q:"Should you move to higher ground during floods? (Yes/No)", options:["Yes","No"], answer:"Yes"},
+      {q:"Are flash floods sudden and dangerous? (True/False)", options:["True","False"], answer:"True"},
+    ],
+    medium: [
+      {q:"Which is NOT a cause of floods?", options:["Deforestation","Heavy rain","Strong winds","Blocked drainage"], answer:"Strong winds"},
+      {q:"Flood warning levels are issued by?", options:["IMD","NDMA","BIS","GSI"], answer:"IMD"},
+      {q:"Flash floods happen due to?", options:["Slow snowmelt","Sudden rain","Dams","Tides"], answer:"Sudden rain"},
+      {q:"Which river basin is flood-prone?", options:["Ganges","Narmada","Tungabhadra","Mahanadi"], answer:"Ganges"},
+    ],
+    hard: [
+      {q:"Which flood type results from dam failure?", options:["Urban","Flash","Coastal","Catastrophic"], answer:"Catastrophic"},
+      {q:"Which soil type increases flood risk?", options:["Sandy","Clay","Gravel","Rock"], answer:"Clay"},
+      {q:"Flood zoning in cities is primarily for?", options:["Insurance","Urban planning","Drainage only","Tourism"], answer:"Urban planning"},
+      {q:"What does a hydrograph show?", options:["Rainfall","River discharge over time","Flood zones","Soil moisture" ], answer:"River discharge over time"}
+    ]
+  }
+};
+
+let quizQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let timer;
+let timeLeft = 60; // seconds per quiz
+
+function startQuiz() {
+  const topic = document.getElementById('topic').value;
+  const difficulty = document.getElementById('difficulty').value;
+  const all = questionBank[topic][difficulty];
+
+  quizQuestions = [...all].sort(()=>0.5 - Math.random()).slice(0,10);
+  score = 0;
+  currentIndex = 0;
+  timeLeft = 60;
+
+  document.getElementById('start-box').style.display = 'none';
+  document.getElementById('quiz-box').style.display = 'block';
+  document.getElementById('quiz-title').textContent = `${topic.toUpperCase()} — ${difficulty.toUpperCase()} Quiz`;
+
+  showQuestion();
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(timer);
+  timer = setInterval(() => {
+    document.getElementById('time').textContent = timeLeft;
+    timeLeft--;
+    if (timeLeft < 0) {
+      clearInterval(timer);
+      showResult(true);
+    }
+  }, 1000);
+}
+
+function showQuestion() {
+  const q = quizQuestions[currentIndex];
+  document.getElementById('question').textContent = `${currentIndex+1}. ${q.q}`;
+  const optionsDiv = document.getElementById('options');
+  optionsDiv.innerHTML = '';
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.textContent = opt;
+    btn.onclick = ()=>checkAnswer(opt);
+    optionsDiv.appendChild(btn);
+  });
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('next-btn').style.display = 'none';
+}
+
+function checkAnswer(selected) {
+  const q = quizQuestions[currentIndex];
+  const feedback = document.getElementById('feedback');
+  if (selected === q.answer) {
+    score++;
+    feedback.textContent = "✅ Correct!";
+    feedback.style.color = "green";
+  } else {
+    feedback.textContent = `❌ Wrong! Correct answer: ${q.answer}`;
+    feedback.style.color = "red";
+  }
+  document.querySelectorAll('.options button').forEach(b => b.disabled = true);
+  document.getElementById('next-btn').style.display = 'inline-block';
+}
+
+function nextQuestion() {
+  currentIndex++;
+  if (currentIndex < quizQuestions.length) {
+    showQuestion();
+  } else {
+    showResult(false);
+  }
+}
+
+function showResult(timeOver=false) {
+  clearInterval(timer);
+  document.getElementById('quiz-box').style.display = 'none';
+  document.getElementById('result-box').style.display = 'block';
+  document.getElementById('result-text').textContent =
+    timeOver ? `⏰ Time's up! You scored ${score} out of ${quizQuestions.length}.`
+             : `You scored ${score} out of ${quizQuestions.length}!`;
+}
+
+function restartQuiz() {
+  document.getElementById('result-box').style.display = 'none';
+  document.getElementById('start-box').style.display = 'block';
+}
+</script>
 </body>
 </html>
