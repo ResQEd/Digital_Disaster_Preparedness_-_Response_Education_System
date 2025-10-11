@@ -36,6 +36,23 @@ body {
     align-items: center;
     gap: 0.5rem;
 }
+
+.reset-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.reset-button:hover {
+    background-color: #c0392b;
+}
+
 .profile-card {
     grid-area: profile;
     text-align: center;
