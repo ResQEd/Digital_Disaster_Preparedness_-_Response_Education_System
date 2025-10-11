@@ -118,5 +118,6 @@
 
         
 .content-section {
-    padding: 2rem 6vw; /* Add some spacing between sections */
+    padding: 2rem 6vw;
+    color: white; /* Add some spacing between sections */
 }
