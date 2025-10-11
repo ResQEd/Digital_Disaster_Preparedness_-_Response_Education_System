@@ -52,10 +52,10 @@ body::after {
 }
 .brain-hub p {
     font-size: 1.125rem;
-    color: var(--light-text); /* High visibility text */
+    color: var(--light-text); 
 }
 
-/* === Section Titles === */
+
 .section-title {
     text-align: center;
     color: var(--neon-cyan);
@@ -65,13 +65,13 @@ body::after {
     text-shadow: 0 0 8px var(--neon-cyan);
 }
 
-/* === Cards Section ('club-cards') === */
+
 .club-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     padding: 0 6vw 2vw 6vw;
-    perspective: 1000px; /* For 3D effect */
+    perspective: 1000px; 
 }
 .mini-project {
     background: rgba(10, 10, 18, 0.8);
@@ -101,7 +101,7 @@ body::after {
     font-size: 1.4rem;
 }
 .mini-project p {
-    color: var(--light-text); /* High visibility text */
+    color: var(--light-text); 
     line-height: 1.6;
     flex-grow: 1;
     margin-bottom: 1.5rem;
@@ -125,7 +125,7 @@ body::after {
     box-shadow: 0 0 25px var(--neon-cyan), 0 0 35px var(--neon-cyan);
 }
 
-/* Hides elements for scroll animation */
+
 .scroll-animate {
     opacity: 0;
     transition: opacity 0.5s ease-out;

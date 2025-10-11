@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResQEd — Contact</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <link rel="stylesheet" href="../static/css/style.css">
+  <style>
+    /* --- SECTION --- */
+    .team-section {
+      padding: 60px 6vw;
+      max-width: 1100px;
+      margin: 0 auto;
+      color: var(--light-text);
+    }
+    .team-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .team-header h1 { color: var(--neon-cyan); }
+    .team-header p { color: var(--light-text); max-width: 720px; margin: 0.5rem auto 0; }
+
+    /* --- GRID UPDATED FOR 2 PER ROW --- */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* two per row */
+      gap: 28px;
+      justify-items: center;
+    }
+
+    @media (max-width: 700px) {
+      .team-grid {
+        grid-template-columns: 1fr; /* stack on small screens */
+      }
+    }
+
+    .profile-name { font-size: 1.05rem; font-weight:700; color: var(--neon-cyan); margin: 6px 0; }
+    .profile-role { color: rgba(170,255,255,0.6); margin-bottom: 10px; }
+    .profile-email { display:inline-block; color: var(--light-text); font-weight:600; text-decoration:none; margin-top:6px; }
+    .profile-email:hover { color: var(--neon-cyan); text-shadow: 0 0 6px var(--neon-cyan); }
+    .card-actions { margin-top:12px; }
+    .social-small { color: var(--light-text); margin: 0 6px; font-size: 1.5rem; text-decoration:none; }
+    .social-small:hover { color: var(--neon-cyan); transform: scale(1.1); }
+
+    @media (max-width:420px){
+      .profile-avatar { width:84px; height:84px; }
+    }
+
+    /* --- CARD STYLES --- */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .profile-card {
+      background: rgba(10, 10, 18, 0.72);
+      backdrop-filter: blur(6px);
+      border-radius: 14px;
+      padding: 24px 18px;
+      text-align: center;
+      border: 1px solid rgba(0, 255, 255, 0.12);
+      box-shadow: 0 0 10px rgba(0,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: float 5s ease-in-out infinite;
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .profile-card:nth-child(2) { animation-delay: 0.5s; }
+    .profile-card:nth-child(3) { animation-delay: 0.2s; }
+    .profile-card:nth-child(4) { animation-delay: 0.7s; }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 70%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.25), transparent);
+      transform: skewX(-30deg);
+      transition: left 0.7s ease-in-out;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.4), 0 15px 35px rgba(0,0,0,0.6);
+      animation-play-state: paused;
+    }
+
+    .profile-card:hover::before {
+      left: 150%;
+    }
+
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 6px auto 14px;
+      border: 3px solid rgba(0,255,255,0.2);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .profile-card:hover .profile-avatar {
+      transform: scale(1.1);
+      border-color: rgba(0,255,255,0.7);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="recess">
+      <a class="skool-logo" href="homepage.html">ResQEd</a>
+      <div class="squad-links">
+        <a href="homepage.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="team-section">
+      <div class="team-header">
+        <h1 class="animate__animated animate__fadeInUp">Meet the Team</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">
+          The people behind ResQEd — creators, educators and engineers building this learning platform.
+        </p>
+      </div>
+
+      <div class="team-grid">
+        <div class="profile-card animate__animated animate__zoomIn">
+          <img class="profile-avatar" src="../data/reshu.jpg" alt="Reshu Upadhyay">
+          <div class="profile-name">Reshu Upadhyay</div>
+          <div class="profile-role">Team Lead — Frontend</div>
+          <a class="profile-email" href="mailto:upadhyayreshu726@email.com">upadhyayreshu726@email.com</a>
+          <div class="card-actions">
+            <a class="social-small" href="https://www.linkedin.com/in/reshu-upadhyay-71537b340/" aria-label="LinkedIn" target="_blank">
+              <i class='bx bxl-linkedin-square'></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="profile-card animate__animated animate__zoomIn animate__delay-1s">
+          <img class="profile-avatar" src="../data/adarsh.jpg" alt="Adarsh Kumar Kushwaha">
+          <div class="profile-name">Adarsh Kumar Kushwaha</div>
+          <div class="profile-role">Backend Developer & Lead Tester</div>
+          <a class="profile-email" href="mailto:kushadarsh01@gmail.com">kushadarsh01@gmail.com</a>
+          <div class="card-actions">
+            <a class="social-small" href="https://www.linkedin.com/in/adarsh-kumar-kushwaha-7a49421ab/" aria-label="LinkedIn" target="_blank">
+              <i class='bx bxl-linkedin-square'></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="profile-card animate__animated animate__zoomIn animate__delay-2s">
+          <img class="profile-avatar" src="../data/raunak.jpg" alt="Raunak Upadhyay">
+          <div class="profile-name">Raunak Upadhyay</div>
+          <div class="profile-role">FullStack Developer & UI/UX</div>
+          <a class="profile-email" href="mailto:raunakupadhyay527@gmail.com">raunakupadhyay527@gmail.com</a>
+          <div class="card-actions">
+            <a class="social-small" href="https://www.linkedin.com/in/raunak-upadhyay-375720287/" aria-label="LinkedIn" target="_blank">
+              <i class='bx bxl-linkedin-square'></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="profile-card animate__animated animate__zoomIn animate__delay-3s">
+          <img class="profile-avatar" src="../data/abhinav.jpg" alt="Abhinav Garg">
+          <div class="profile-name">Abhinav Garg</div>
+          <div class="profile-role">Data Engineer & Testing</div>
+          <a class="profile-email" href="mailto:abhinavg31493@gmail.com">abhinavg31493@gmail.com</a>
+          <div class="card-actions">
+            <a class="social-small" href="https://www.linkedin.com/in/abhinav-garg-2ba152318/" aria-label="LinkedIn" target="_blank">
+              <i class='bx bxl-linkedin-square'></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="campfire">
+    <div class="links-row">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="social-media">
+      <span>Follow us:
+        <a href="#" aria-label="Facebook"><i class='bx bxl-facebook-square'></i></a>
+        <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+        <a href="#" aria-label="Instagram"><i class='bx bxl-instagram-alt'></i></a>
+      </span>
+    </div>
+    <div class="contact-sm">
+      <span><i class='bx bxs-phone'></i> Call us: +91 xxx xxxx xxx</span>
+    </div>
+    <p class="copy-note">© <span id="year"></span> ResQEd — Learn. Practice. Respond.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
