@@ -29,8 +29,8 @@
     background: linear-gradient(90deg, var(--accent), var(--sky));
     color: #fff;
     border: 0;
-    padding: 0.9rem 1.8rem;
-    border-radius: var(--radius);
+    padding: .9rem 1.8rem;
+    border-radius: 8px;
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
