@@ -1,4 +1,3 @@
-/* === Animated Neon Blob Background === */
 body::before,
 body::after {
     content: '';
@@ -131,7 +130,6 @@ body::after {
 .leaderboard-list li:nth-child(1) .score { color: #000; }
 .leaderboard-list .current-user { border: 2px solid var(--neon-cyan); background-color: rgba(0, 255, 255, 0.1); font-weight: 700; }
 
-<<<<<<< HEAD
 .badges-card { grid-area: badges; }
 .badge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 1rem; justify-content: center; }
 
@@ -143,44 +141,6 @@ body::after {
 .quiz-history-table td:last-child { font-weight: 700; color: var(--primary-text); }
 
 .emergency-card { 
-=======
-.badges-card {
-    grid-area: badges;
-}
-.badge-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    gap: 1rem;
-    justify-content: center;
-}
-.quiz-history-card {
-    grid-area: quiz-history;
-}
-.quiz-history-table {
-    display: block;
-    width: 100%;
-    border-collapse: collapse;
-}
-.quiz-history-table thead, .quiz-history-table tbody tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-}
-.quiz-history-table tbody {
-    display: block;
-    max-height: 165px;
-    overflow-y: auto;
-}
-.quiz-history-table th, .quiz-history-table td {
-    padding: 0.75rem;
-    text-align: left;
-    border-bottom: 1px solid #e0e4f6;
-}
-.quiz-history-table th { font-weight: 600; }
-.quiz-history-table td:last-child { font-weight: 700; color: var(--primary); }
-
-.emergency-card {
->>>>>>> 3c37914ef50be8f228085c14956057448f28063c
     grid-area: emergency;
     background: linear-gradient(45deg, #ff2a6d, #ff6a4d);
     color: #fff;
@@ -211,62 +171,12 @@ body::after {
     position: relative;
     width: 100%; height: 140px;
     border-radius: var(--radius);
-<<<<<<< HEAD
     padding: 1rem; text-align: center;
     display: flex; flex-direction: column;
     justify-content: center; align-items: center;
     overflow: hidden; transition: all 0.4s ease; cursor: pointer;
     background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     color: #fff;
-=======
-    padding: 1rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    transition: all 0.4s ease;
-    cursor: pointer;
-}
-.animated-badge:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-.animated-badge .badge-icon {
-    font-size: 3rem; 
-    line-height: 1;
-    margin-bottom: 0.75rem;
-}
-.animated-badge .badge-title {
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin: 0;
-}
-
-.animated-badge .badge-description {
-    font-size: 0.7rem;
-    font-weight: 500;
-    margin-top: 5px;
-    opacity: 0.8;
-}
-
-.no-badges-message {
-    text-align: center;
-    color: #6c757d;
-    padding: 2rem 1rem;
-    font-style: italic;
-    grid-column: 1 / -1;
-}
-
-.animated-badge.locked {
-    filter: grayscale(100%);
-    opacity: 0.6;
-}
-.animated-badge.locked:hover {
-    filter: grayscale(80%);
-    opacity: 0.8;
->>>>>>> 3c37914ef50be8f228085c14956057448f28063c
 }
 .animated-badge:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
 .animated-badge .badge-icon { font-size: 3rem; line-height: 1; margin-bottom: 0.75rem; }
@@ -280,26 +190,6 @@ body::after {
     transform: skewX(-30deg);
     animation: shimmer 5s infinite;
 }
-<<<<<<< HEAD
-=======
-
-.quiz-history-table tbody::-webkit-scrollbar {
-    width: 8px;
-}
-.quiz-history-table tbody::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-.quiz-history-table tbody::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-}
-.quiz-history-table tbody::-webkit-scrollbar-thumb:hover {
-    background: #aaa;
-}
-
-.course-complete-badge { background: linear-gradient(135deg, #2c3e50, #4b79a1); color: #fff; }
->>>>>>> 3c37914ef50be8f228085c14956057448f28063c
 .course-complete-badge .badge-icon { color: #e0f7fa; animation: glow 2.5s ease-in-out infinite; }
 .quiz-gold-badge { background: linear-gradient(135deg, #ffb300, #ffd700); color: #4a3000; }
 .quiz-gold-badge .badge-icon { animation: glint 3s ease-in-out infinite; }
