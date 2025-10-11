@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
     const PROGRESS_KEY = 'ResQEdProgressData';
 
     const COURSE_TOTALS = {
@@ -160,7 +161,54 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        function displayLeaderboard() {
+            const leaderboardList = document.querySelector('.leaderboard-list');
+            if (!leaderboardList) return;
+
+            const mockUsers = [
+                { name: "Ravi Kumar", score: 95 },
+                { name: "Anjali Mehta", score: 82 },
+                { name: "Suresh Gupta", score: 68 },
+                { name: "Priya Singh", score: 55 }
+            ];
+
+            const quizHistory = JSON.parse(localStorage.getItem('ResQEdQuizHistory')) || [];
+            let currentUserScore = 0;
+            if (quizHistory.length > 0) {
+                const totalPercentage = quizHistory.reduce((sum, result) => {
+                    const parts = result.score.split(' / ');
+                    const score = parseInt(parts[0]);
+                    const total = parseInt(parts[1]);
+                    return sum + (score / total * 100);
+                }, 0);
+                currentUserScore = Math.round(totalPercentage / quizHistory.length);
+            }
+            
+            const currentUser = { name: "Tester (You)", score: currentUserScore };
+
+            const allScores = [...mockUsers, currentUser].sort((a, b) => b.score - a.score);
+            
+            leaderboardList.innerHTML = '';
+
+            allScores.forEach((user, index) => {
+                const rank = index + 1;
+                const li = document.createElement('li');
+                
+                if (user.name === "Tester (You)") {
+                    li.classList.add('current-user');
+                }
+                
+                li.innerHTML = `
+                    <span class="rank">${rank}.</span>
+                    <span class="name">${user.name}</span>
+                    <span class="score">${user.score} pts</span>
+                `;
+                leaderboardList.appendChild(li);
+            });
+        }
+
         displayQuizHistory();
+        displayLeaderboard();
     }
     
     const yearEl = document.getElementById('year');

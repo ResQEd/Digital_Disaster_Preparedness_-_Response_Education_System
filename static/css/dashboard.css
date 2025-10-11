@@ -8,15 +8,18 @@ body {
     max-width: 1400px;
     margin: 0 auto;
 }
+
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
         "profile progress-overview progress-overview"
+        "courses courses leaderboard"
         "courses courses badges"
         "quiz-history quiz-history emergency";
     gap: 1.5rem;
 }
+
 .card {
     background-color: #fff;
     border-radius: var(--radius);
@@ -110,6 +113,53 @@ body {
     color: var(--accent);
     text-decoration: none;
 }
+
+.leaderboard-card {
+    grid-area: leaderboard;
+}
+.leaderboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.leaderboard-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background-color: #f8f9fa;
+    font-weight: 500;
+}
+.leaderboard-list li:nth-child(1) {
+    background-color: #ffd700;
+    font-weight: 700;
+}
+.leaderboard-list li:nth-child(2) {
+    background-color: #c0c0c0;
+}
+.leaderboard-list li:nth-child(3) {
+    background-color: #cd7f32;
+}
+.leaderboard-list .rank {
+    font-weight: 700;
+    margin-right: 15px;
+    min-width: 20px;
+}
+.leaderboard-list .name {
+    flex-grow: 1;
+}
+.leaderboard-list .score {
+    font-weight: 700;
+    color: var(--primary);
+}
+.leaderboard-list .current-user {
+    border: 2px solid var(--primary);
+    background-color: #e3f2fd;
+    font-weight: 700;
+}
+
 .badges-card {
     grid-area: badges;
 }
@@ -250,6 +300,7 @@ body {
         grid-template-areas:
             "profile progress-overview"
             "courses courses"
+            "leaderboard quiz-history"
             "badges quiz-history"
             "emergency emergency";
     }
@@ -262,6 +313,7 @@ body {
             "profile"
             "progress-overview"
             "courses"
+            "leaderboard"
             "badges"
             "quiz-history"
             "emergency";
