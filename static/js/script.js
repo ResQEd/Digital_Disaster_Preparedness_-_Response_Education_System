@@ -1,13 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- KEY DEFINITIONS ---
     const PROGRESS_KEY = 'ResQEdProgressData';
     const QUIZ_BADGES_KEY = 'ResQEdQuizBadges';
     const QUIZ_HISTORY_KEY = 'ResQEdQuizHistory';
 
     const COURSE_TOTALS = {
         floods: 7, earthquakes: 7, landslides: 6, forestFires: 7,
-        tsunami: 7, cyclone: 8, chemical: 10, biological: 11, nuclear: 11
+        tsunami: 7, cyclones: 8, chemical: 10, biological: 11, nuclear: 11
     };
     
     const BADGE_DATA = {
@@ -22,13 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
         nuclear: { icon: 'bxs-radiation', title: 'Nuclear Expert' }
     };
 
-    // --- HELPER FUNCTIONS ---
 
     function getProgress() {
         const data = localStorage.getItem(PROGRESS_KEY);
         if (data) {
             const progress = JSON.parse(data);
-            progress.courseTotals = COURSE_TOTALS; // Always use the latest totals
+            progress.courseTotals = COURSE_TOTALS;
             return progress;
         }
         return { moduleStatus: {}, courseTotals: COURSE_TOTALS };
@@ -41,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function getCourseKeyFromTitle(title) {
         const lowerCaseTitle = title.toLowerCase();
         if (lowerCaseTitle.includes('forest fire')) return 'forestFires';
+        if (lowerCaseTitle.includes('cyclone')) return 'cyclones';
 
         for (const key in BADGE_DATA) {
             let singularKey = key.endsWith('s') ? key.slice(0, -1) : key;
@@ -51,31 +50,24 @@ document.addEventListener('DOMContentLoaded', () => {
         return null;
     }
 
-    // --- LOGIC FOR COURSE PAGES (CORRECTED) ---
-
     const courseAccordion = document.querySelector('.course-accordion');
     if (courseAccordion) {
         const progress = getProgress();
-        // Determine the course for the entire page from the H1 tag
         const pageH1 = document.querySelector('h1');
         const pageCourseKey = pageH1 ? getCourseKeyFromTitle(pageH1.textContent) : null;
 
-        // If we are on a valid course page (e.g., flood.html, earthquake.html)
         if (pageCourseKey) {
-            // Find ALL "Mark as Complete" buttons on the page
             const allCompleteButtons = courseAccordion.querySelectorAll('.module-complete button');
 
             allCompleteButtons.forEach((button, index) => {
                 const subHeader = button.closest('.accordion-sub-item')?.querySelector('.accordion-sub-header');
-                let subItemIdentifier = `module-${index}`; // Fallback ID
+                let subItemIdentifier = `module-${index}`;
                 if (subHeader && subHeader.textContent) {
                      subItemIdentifier = subHeader.textContent.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
                 }
                 
-                // Use the page-level course key for every button
                 const moduleId = `${pageCourseKey}_${subItemIdentifier}`;
 
-                // Check saved progress and attach the click event
                 if (progress.moduleStatus[moduleId]) {
                     button.textContent = '✅ Completed';
                     button.disabled = true;
@@ -90,8 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-
-    // --- LOGIC FOR DASHBOARD PAGE ---
 
     const dashboardContainer = document.querySelector('.dashboard-container');
     if (dashboardContainer) {

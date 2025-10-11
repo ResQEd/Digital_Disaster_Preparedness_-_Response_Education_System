@@ -239,15 +239,6 @@
         scrollElements.forEach((el) => {
             observer.observe(el);
         });
-
-   
-        document.querySelectorAll('.module-complete button').forEach(button => {
-            button.addEventListener('click', () => {
-                button.textContent = 'Completed!';
-                button.classList.add('completed');
-                button.disabled = true;
-            });
-        });
     </script>
 </body>
 </html>
