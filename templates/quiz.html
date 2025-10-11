@@ -9,10 +9,8 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   
-  <link rel="stylesheet" href="../static/css/style.css"> <link rel="stylesheet" href="../static/css/quiz.css">
-  
-    
-  </style>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/quiz.css">
 </head>
 
 <body>
@@ -31,7 +29,7 @@
 <section class="hangout">
     <div class="brain-hub">
         <h1 class="animate__animated animate__fadeInUp">Test Your Knowledge</h1>
-        <p class="animate__animated animate__fadeInUp animate__delay-1s">Challenge yourself with our disaster preparedness quizzes and earn badges for your skills.</p>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">Challenge yourself with our disaster preparedness quizzes.</p>
     </div>
 </section>
 
@@ -43,6 +41,8 @@
       <select id="topic">
         <option value="earthquake">Earthquake</option>
         <option value="flood">Flood</option>
+        <option value="forestfire">Forest Fire</option>
+        <option value="landslide">Landslide</option>
       </select>
       <select id="difficulty">
         <option value="easy">Easy</option>
@@ -50,7 +50,7 @@
         <option value="hard">Hard</option>
       </select>
     </div>
-    <button class="btn btn-primary" onclick="startQuiz()">Start Quiz</button>
+    <button class="btn btn-primary" id="start-btn">Start Quiz</button>
   </div>
 
   <div class="quiz-box" id="quiz-box" style="display:none;">
@@ -59,191 +59,35 @@
     <p id="question"></p>
     <div class="options" id="options"></div>
     <p id="feedback"></p>
-    <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">Next</button>
+    <button class="btn btn-primary" id="next-btn">Next</button>
   </div>
 
   <div class="quiz-box fadeIn" id="result-box" style="display:none;">
     <h2>Quiz Completed!</h2>
     <p id="result-text"></p>
-    <button class="btn btn-primary" onclick="restartQuiz()">Play Again</button>
+    <button class="btn btn-primary" id="restart-btn">Play Again</button>
   </div>
 </main>
 
 <footer class="campfire">
-        <div class="links-row">
-            <a href="index.html">Home</a>
-            <a href="courses.html">Courses</a>
-            <a href="contact.html">Contact</a>
-        </div>
-        <div class="social-media">
-            <span>Follow us:
-                <a href="#" aria-label="Facebook"><i class='bx bxl-facebook-square'></i></a>
-                <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
-                <a href="#" aria-label="Instagram"><i class='bx bxl-instagram-alt'></i></a>
-            </span>
-        </div>
-        <div class="contact-sm">
-            <span><i class='bx bxs-phone'></i> Call us: +91 xxx xxxx xxx</span>
-        </div>
-        <p class="copy-note">© <span id="year"></span> ResQEd — Learn. Practice. Respond.</p>
-    </footer>
+    <div class="links-row">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="social-media">
+        <span>Follow us:
+            <a href="#" aria-label="Facebook"><i class='bx bxl-facebook-square'></i></a>
+            <a href="#" aria-label="Twitter"><i class='bx bxl-twitter'></i></a>
+            <a href="#" aria-label="Instagram"><i class='bx bxl-instagram-alt'></i></a>
+        </span>
+    </div>
+    <div class="contact-sm">
+        <span><i class='bx bxs-phone'></i> Call us: +91 xxx xxxx xxx</span>
+    </div>
+    <p class="copy-note">© <span id="year"></span> ResQEd — Learn. Practice. Respond.</p>
+</footer>
 
-<script>
-const questionBank = {
-  earthquake: {
-    easy: [
-      {q:"The 'Drop, Cover, and Hold On' technique is the recommended safety action during an earthquake. [cite: 162, 163, 171]", options:["True","False"], answer:"True"},
-      {q:"It is safe to use an elevator during an earthquake. [cite: 175]", options:["True","False"], answer:"False"},
-      {q:"The main danger from earthquakes is building collapse. [cite: 157]", options:["True","False"], answer:"True"},
-      {q:"Nearly 59% of India's land is vulnerable to earthquakes. [cite: 135]", options:["True","False"], answer:"True"},
-    ],
-    medium: [
-      {q:"Which scale measures the energy released by an earthquake at its source? [cite: 150]", options:["Modified Mercalli Intensity (MMI)","Moment Magnitude Scale","Richter Scale","Seismic Zone Scale"], answer:"Moment Magnitude Scale"},
-      {q:"The Bureau of Indian Standards divides India into how many seismic zones? [cite: 153]", options:["2","3","4","5"], answer:"4"},
-      {q:"Reservoir-Induced Seismicity is a potential human-induced cause of earthquakes. [cite: 143]", options:["True","False"], answer:"True"},
-      {q:"Which of these areas is in Zone V (Very High Risk) for earthquakes in India? [cite: 154]", options:["Delhi","North Bihar","Kashmir Valley","Chennai"], answer:"Kashmir Valley"},
-    ],
-    hard: [
-      {q:"What geological process is the primary cause of earthquakes in the Himalayan region? [cite: 139]", options:["Volcanic activity","Reservoir pressure","Indian Plate pushing under the Eurasian Plate","Mining operations"], answer:"Indian Plate pushing under the Eurasian Plate"},
-      {q:"Shallow-focus earthquakes, which are more damaging, occur at depths less than what? [cite: 147]", options:["100 km","70 km","200 km","50 km"], answer:"70 km"},
-      {q:"What is the term for the sinking or tilting of buildings in wet, loose soil during an earthquake? [cite: 158]", options:["Landslide","Liquefaction","Subduction","Faulting"], answer:"Liquefaction"},
-      {q:"Special reinforced concrete walls designed to resist sideways forces in buildings are known as what? [cite: 188]", options:["Shear Walls","Bearing Walls","Curtain Walls","Partition Walls"], answer:"Shear Walls"},
-    ]
-  },
-  flood: {
-    easy: [
-      {q:"Floods in India are mainly triggered by the South-West Monsoon. [cite: 63]", options:["True","False"], answer:"True"},
-      {q:"You should always try to walk or drive through moving floodwaters. [cite: 112]", options:["True","False"], answer:"False"},
-      {q:"Moving to higher ground is a recommended safety measure during a flood. [cite: 114]", options:["True","False"], answer:"True"},
-      {q:"Urban floods can be caused by the failure of drainage systems during heavy rain. [cite: 68]", options:["True","False"], answer:"True"},
-    ],
-    medium: [
-      {q:"Which agency in India is responsible for issuing flood forecasts for major rivers? [cite: 104]", options:["India Meteorological Department (IMD)","National Disaster Management Authority (NDMA)","Central Water Commission (CWC)","Geological Survey of India (GSI)"], answer:"Central Water Commission (CWC)"},
-      {q:"Which of the following is a human-induced (anthropogenic) cause of floods? [cite: 83]", options:["Cyclones","Cloudbursts","Encroachment on floodplains","River Siltation"], answer:"Encroachment on floodplains"},
-      {q:"A sudden flood caused by a cloudburst in a hilly region is known as what? [cite: 68]", options:["Riverine Flood","Coastal Flood","Urban Flood","Flash Flood"], answer:"Flash Flood"},
-      {q:"The special rescue teams for floods and other disasters in India are part of which force? [cite: 103]", options:["Indian Army","National Disaster Response Force (NDRF)","Central Reserve Police Force (CRPF)","Border Security Force (BSF)"], answer:"National Disaster Response Force (NDRF)"},
-    ],
-    hard: [
-      {q:"Which of these is considered a 'non-structural' measure for flood damage reduction? [cite: 108, 109]", options:["Building embankments","Constructing dams","Watershed management and afforestation","River dredging"], answer:"Watershed management and afforestation"},
-      {q:"The Kosi river is famously known as the 'Sorrow of Bihar' due to frequent and severe riverine floods. [cite: 68]", options:["True","False"], answer:"True"},
-      {q:"Which fund is used to provide immediate financial relief to flood victims? [cite: 115]", options:["Prime Minister's National Relief Fund (PMNRF)","State Disaster Response Fund (SDRF)","Contingency Fund of India","National Clean Energy Fund"], answer:"State Disaster Response Fund (SDRF)"},
-      {q:"The Sendai Framework, mentioned in India's long-term recovery plans, emphasizes the importance of what? [cite: 119]", options:["Focusing only on post-disaster relief","Mainstreaming disaster risk reduction in development plans","International funding for all recovery","Using traditional building methods only"], answer:"Mainstreaming disaster risk reduction in development plans"}
-    ]
-  }
-};
-
-let quizQuestions = [];
-let currentIndex = 0;
-let score = 0;
-let timer;
-let timeLeft = 60;
-
-function startQuiz() {
-  const topic = document.getElementById('topic').value;
-  const difficulty = document.getElementById('difficulty').value;
-  quizQuestions = questionBank[topic][difficulty];
-  
-  score = 0;
-  currentIndex = 0;
-  timeLeft = 60;
-
-  document.getElementById('start-box').style.display = 'none';
-  const quizBox = document.getElementById('quiz-box');
-  quizBox.style.display = 'block';
-  quizBox.classList.add('fadeIn');
-  document.getElementById('quiz-title').textContent = `${topic.charAt(0).toUpperCase() + topic.slice(1)} Quiz — ${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}`;
-
-  showQuestion();
-  startTimer();
-}
-
-function startTimer() {
-  document.getElementById('time').textContent = timeLeft;
-  clearInterval(timer);
-  timer = setInterval(() => {
-    timeLeft--;
-    document.getElementById('time').textContent = timeLeft;
-    if (timeLeft < 0) {
-      clearInterval(timer);
-      showResult(true);
-    }
-  }, 1000);
-}
-
-function showQuestion() {
-  const q = quizQuestions[currentIndex];
-  document.getElementById('question').textContent = `${currentIndex+1}. ${q.q}`;
-  const optionsDiv = document.getElementById('options');
-  optionsDiv.innerHTML = '';
-  q.options.forEach(opt => {
-    const btn = document.createElement('button');
-    btn.textContent = opt;
-    btn.onclick = () => checkAnswer(opt, btn);
-    optionsDiv.appendChild(btn);
-  });
-  document.getElementById('feedback').textContent = '';
-  document.getElementById('next-btn').style.display = 'none';
-}
-
-function checkAnswer(selected, selectedButton) {
-  const q = quizQuestions[currentIndex];
-  const feedback = document.getElementById('feedback');
-  const allOptionButtons = document.querySelectorAll('.options button');
-  
-  allOptionButtons.forEach(b => {
-      b.disabled = true;
-      if (b.textContent === q.answer) {
-          b.classList.add('correct');
-      }
-  });
-
-  if (selected === q.answer) {
-    score++;
-    feedback.textContent = "✅ Correct!";
-    feedback.style.color = "var(--success)";
-  } else {
-    selectedButton.classList.add('wrong');
-    feedback.textContent = `❌ Wrong!`;
-    feedback.style.color = "var(--danger)";
-  }
-
-  document.getElementById('next-btn').style.display = 'inline-block';
-}
-
-function nextQuestion() {
-  currentIndex++;
-  if (currentIndex < quizQuestions.length) {
-    showQuestion();
-  } else {
-    showResult(false);
-  }
-}
-
-function showResult(timeOver=false) {
-  clearInterval(timer);
-  document.getElementById('quiz-box').style.display = 'none';
-  const resultBox = document.getElementById('result-box');
-  resultBox.style.display = 'block';
-  resultBox.classList.add('fadeIn');
-  
-  const resultP = document.getElementById('result-text');
-  const percentage = (score / quizQuestions.length) * 100;
-  let message = timeOver ? `⏰ Time's up! ` : ``;
-  message += `You scored ${score} out of ${quizQuestions.length} (${percentage.toFixed(0)}%).`;
-  
-  if(percentage > 80) message += " Excellent work!";
-  else if (percentage > 50) message += " Good job!";
-  else message += " Keep practicing!";
-
-  resultP.textContent = message;
-}
-
-function restartQuiz() {
-  document.getElementById('result-box').style.display = 'none';
-  const startBox = document.getElementById('start-box');
-  startBox.style.display = 'block';
-  startBox.classList.add('fadeIn');
-}
-</script>
+<script src="../static/js/quiz.js"></script>
 </body>
 </html>
