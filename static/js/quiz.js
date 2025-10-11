@@ -146,6 +146,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         resultTextEl.textContent = message;
+
+        saveQuizHistory();
+    }
+
+    function saveQuizHistory() {
+        const topic = topicSelect.value;
+        const difficulty = difficultySelect.value;
+        const topicName = topic.charAt(0).toUpperCase() + topic.slice(1).replace('fire', ' Fire');
+
+        const resultData = {
+            name: `${topicName} (${difficulty})`,
+            date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+            score: `${score} / ${quizQuestions.length}`
+        };
+
+        const history = JSON.parse(localStorage.getItem('ResQEdQuizHistory')) || [];
+        history.unshift(resultData);
+        localStorage.setItem('ResQEdQuizHistory', JSON.stringify(history));
     }
 
     function restartQuiz() {

@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (pageCourseKey) {
             const completeButtons = courseAccordion.querySelectorAll('.module-complete button');
-
             completeButtons.forEach((button, index) => {
                 const moduleId = `${pageCourseKey}_module_${index}`;
                 
@@ -82,9 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const resetButton = document.getElementById('resetProgressBtn');
         if (resetButton) {
             resetButton.addEventListener('click', () => {
-                if (confirm('Are you sure you want to reset all your course progress? This cannot be undone.')) {
+                if (confirm('Are you sure you want to reset all course and quiz progress? This cannot be undone.')) {
                     localStorage.removeItem(PROGRESS_KEY);
-                    alert('Progress has been reset.');
+                    localStorage.removeItem('ResQEdQuizHistory');
+                    alert('All progress has been reset.');
                     location.reload();
                 }
             });
@@ -114,29 +114,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 const parent = courseItem.parentElement;
                 const progressBar = parent.querySelector('.progress-bar');
                 const link = parent.querySelector('a');
-
                 if (progressBar) progressBar.style.width = `${percentage}%`;
-                
                 if(link) {
-                    if (percentage === 100) {
-                        link.innerHTML = "Review <i class='bx bx-right-arrow-alt'></i>";
-                    } else if (percentage > 0) {
-                        link.innerHTML = "Continue <i class='bx bx-right-arrow-alt'></i>";
-                    } else {
-                        link.innerHTML = "Start Now <i class='bx bx-right-arrow-alt'></i>";
-                    }
+                    if (percentage === 100) link.innerHTML = "Review <i class='bx bx-right-arrow-alt'></i>";
+                    else if (percentage > 0) link.innerHTML = "Continue <i class='bx bx-right-arrow-alt'></i>";
+                    else link.innerHTML = "Start Now <i class='bx bx-right-arrow-alt'></i>";
                 }
             }
         }
 
         let totalCompleted = Object.values(completedCounts).reduce((a, b) => a + b, 0);
         let totalModules = Object.values(progress.courseTotals).reduce((a, b) => a + b, 0);
-
         const overallPercentage = totalModules > 0 ? Math.round((totalCompleted / totalModules) * 100) : 0;
         const overallProgressBar = document.querySelector('.progress-overview-card .progress-bar');
         if (overallProgressBar) {
             overallProgressBar.style.width = `${overallPercentage}%`;
             overallProgressBar.textContent = `${overallPercentage}%`;
         }
+
+        function displayQuizHistory() {
+            const historyTable = document.querySelector('.quiz-history-table');
+            if (!historyTable) return;
+
+            const history = JSON.parse(localStorage.getItem('ResQEdQuizHistory')) || [];
+            let historyTableBody = historyTable.querySelector('tbody');
+
+            if (history.length === 0) {
+                historyTableBody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No quizzes taken yet.</td></tr>';
+            } else {
+                if (!historyTable.querySelector('thead')) {
+                     historyTable.innerHTML = `<thead><tr><th>Quiz Name</th><th>Date</th><th>Score</th></tr></thead><tbody></tbody>`;
+                     historyTableBody = historyTable.querySelector('tbody');
+                }
+                historyTableBody.innerHTML = '';
+                
+                history.forEach(result => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${result.name}</td>
+                        <td>${result.date}</td>
+                        <td>${result.score}</td>
+                    `;
+                    historyTableBody.appendChild(row);
+                });
+            }
+        }
+
+        displayQuizHistory();
+    }
+    
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
     }
 });
