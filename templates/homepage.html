@@ -36,9 +36,13 @@
                 Learn life-saving skills with our interactive courses and quizzes.
             </p>
         </div>
-        <div class="art-project animate__animated animate__fadeInRight">
-           
-            <img src="https://as2.ftcdn.net/v2/jpg/05/84/09/59/1000_F_584095934_umNVYQ2gE0kdyrPg72DvZCRoprZ97ns6.jpg" alt="Emergency training simulation">
+        <div class="disaster-alert-box animate__animated animate__fadeInRight">
+            <h2><i class='bx bxs-hot'></i> Latest Alerts</h2>
+            <ul>
+                <li><strong>High Wind Warning:</strong> Coastal areas of Gujarat. Expected landfall in 48 hours.</li>
+                <li><strong>Flood Watch:</strong> Assam region due to heavy monsoon rains.</li>
+                <li><strong>Heatwave Alert:</strong> Northern plains. Temperatures expected to exceed 45°C.</li>
+            </ul>
         </div>
     </section>
 
@@ -55,11 +59,17 @@
             <br>
             <a class="go-try" href="quiz.html">View</a>
         </div>
-        <div class="mini-project animate__animated animate__zoomIn animate__delay-2s">
+        <div class="mini-project animate__animated animate__zoomIn animate__delay-1s">
             <h2>API based alert</h2>
             <p>Stay informed with real-time disaster alerts and updates.</p>
             <br>
             <a class="go-try" href="ar/vr.html">View</a>
+        </div>
+        <div class="mini-project animate__animated animate__zoomIn animate__delay-2s">
+            <h2>Student active record</h2>
+            <p>Experience realistic disaster.</p>
+            <br>
+            <a class="go-try" href="dashboard.html">View</a>
         </div>
     </section>
 
@@ -132,6 +142,32 @@
 
     scrollElements.forEach((el) => {
         observer.observe(el);
+    });
+
+   
+    document.querySelectorAll('.mini-project').forEach(el => {
+        const tiltFactor = 10; 
+
+        el.addEventListener('mousemove', e => {
+            const r = el.getBoundingClientRect();
+            
+            const x = e.clientX - r.left;
+            const y = e.clientY - r.top;  
+            
+            
+            const rotateY = tiltFactor * ((x / r.width) - 0.5);
+            const rotateX = -1 * tiltFactor * ((y / r.height) - 0.5);
+            
+            
+            el.style.setProperty('--rotateX', `${rotateX}deg`);
+            el.style.setProperty('--rotateY', `${rotateY}deg`);
+        });
+        
+        el.addEventListener('mouseleave', () => {
+          
+            el.style.setProperty('--rotateX', '0deg');
+            el.style.setProperty('--rotateY', '0deg');
+        });
     });
 </script>
 

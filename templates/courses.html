@@ -39,31 +39,28 @@
                 <br>
                 <a class="go-try animate__animated animate__fadeInUp animate__delay-2s" href="allcourses.html">Explore more</a>
             </div>
-            <div class="art-project animate__animated animate__fadeInRight">
-                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80">
-            </div>
         </section>
 
         <section class="club-cards">
-            <div class="mini-project animate__animated animate__zoomIn">
+            <div class="mini-project scroll-animate" data-animation="animate__zoomIn">
                 <i class='bx bxs-shield-plus'></i> <h2>Flood Management</h2>
                 <p>Learn about flood types, prevention, and response protocols.</p>
                 <a class="go-try" href="../templates/courses/flood.html">View Course</a>
             </div>
 
-            <div class="mini-project animate__animated animate__zoomIn animate__delay-1s">
+            <div class="mini-project scroll-animate" data-animation="animate__zoomIn">
                 <i class='bx bxs-first-aid'></i> <h2>Earthquake Safety</h2>
                 <p>Understand seismic zones, safety measures, and rescue efforts.</p>
                 <a class="go-try" href="../templates/courses/earthquake.html">View Course</a>
             </div>
 
-            <div class="mini-project animate__animated animate__zoomIn animate__delay-2s">
+            <div class="mini-project scroll-animate" data-animation="animate__zoomIn">
                 <i class='bx bxs-cube-alt'></i> <h2>Landslide Mitigation</h2>
                 <p>Study the causes, prevention, and response to landslides.</p>
                  <a class="go-try" href="../templates/courses/landslide.html">View Course</a>
             </div>
 
-            <div class="mini-project animate__animated animate__zoomIn animate__delay-3s">
+            <div class="mini-project scroll-animate" data-animation="animate__zoomIn">
                 <i class='bx bxs-group'></i> <h2>Forest Fire Control</h2>
                 <p>Explore methods for preventing and managing forest fires.</p>
                 <a class="go-try" href="../templates/courses/forest_fire.html">View Course</a>
@@ -91,7 +88,39 @@
     </footer>
 
     <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
+        const yearSpan = document.getElementById('year');
+        if (yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+        
+        const scrollElements = document.querySelectorAll(".scroll-animate");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const animation = entry.target.dataset.animation;
+                    entry.target.style.opacity = 1;
+                    entry.target.classList.add("animate__animated", animation);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2 
+        });
+        scrollElements.forEach((el) => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.mini-project').forEach(el => {
+            el.addEventListener('mousemove', e => {
+                const r = el.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width;
+                const y = (e.clientY - r.top) / r.height;
+                el.style.transform = `perspective(800px) rotateX(${(y - 0.5) * 8}deg) rotateY(${(x - 0.5) * -8}deg)`;
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'perspective(800px) rotateX(0) rotateY(0)';
+            });
+        });
     </script>
 </body>
 </html>

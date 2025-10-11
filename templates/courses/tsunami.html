@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ResQEd — Tsunami Management Course</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    
-<link rel="stylesheet" href="../../static/css/style.css">
-  <link rel="stylesheet" href="../../static/css/tsunami.css">
+
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/css/tsunami.css">
 
     <meta name="description" content="Comprehensive course on tsunami disaster management and safety.">
 </head>
@@ -34,19 +34,18 @@
         <section class="hangout">
             <div class="brain-hub">
                 <h1 class="animate__animated animate__fadeInUp">Tsunami Management Course</h1>
-                <p class="animate__animated animate__fadeInUp animate__delay-1s">Understanding, predicting, and preparing for tsunamis</p>    
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Understanding, predicting, and preparing for tsunamis</p>      
             </div>
         </section>
 
         <section class="course-accordion">
-            <details class="accordion-item">
+            <details class="accordion-item scroll-animate" data-animation="animate__fadeInUp">
                 <summary class="accordion-header">
                     <h3>Module 1: Introduction to Tsunamis</h3>
                     <i class='bx bx-chevron-down'></i>
                 </summary>
                 <div class="accordion-panel">
                     <p>Tsunamis are giant sea waves caused mainly by undersea earthquakes, volcanic eruptions, or landslides. They can travel across oceans and strike coasts with devastating force, causing massive destruction and loss of life.</p>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>Causes of Tsunamis</h4></summary>
                         <div class="accordion-sub-panel">
@@ -62,7 +61,6 @@
                             </div>
                         </div>
                     </details>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>Effects and Impact</h4></summary>
                         <div class="accordion-sub-panel">
@@ -82,7 +80,7 @@
                 </div>
             </details>
 
-            <details class="accordion-item">
+            <details class="accordion-item scroll-animate" data-animation="animate__fadeInUp">
                 <summary class="accordion-header">
                     <h3>Module 2: Prediction & Early Warning</h3>
                     <i class='bx bx-chevron-down'></i>
@@ -103,7 +101,6 @@
                             </div>
                         </div>
                     </details>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>Warning Signs for Public</h4></summary>
                         <div class="accordion-sub-panel">
@@ -121,7 +118,7 @@
                 </div>
             </details>
 
-            <details class="accordion-item">
+            <details class="accordion-item scroll-animate" data-animation="animate__fadeInUp">
                 <summary class="accordion-header">
                     <h3>Module 3: Safety & Preparedness</h3>
                     <i class='bx bx-chevron-down'></i>
@@ -141,7 +138,6 @@
                             </div>
                         </div>
                     </details>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>During a Tsunami</h4></summary>
                         <div class="accordion-sub-panel">
@@ -158,7 +154,7 @@
                 </div>
             </details>
 
-            <details class="accordion-item">
+            <details class="accordion-item scroll-animate" data-animation="animate__fadeInUp">
                 <summary class="accordion-header">
                     <h3>Module 4: Government Response</h3>
                     <i class='bx bx-chevron-down'></i>
@@ -202,10 +198,37 @@
         <p class="copy-note">© <span id="year"></span> ResQEd — All Rights Reserved.</p>
     </footer>
 
-    <script src="../../static/js/script.js"></script>
-
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+        const yearSpan = document.getElementById('year');
+        if (yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+        
+        const scrollElements = document.querySelectorAll(".scroll-animate");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const animation = entry.target.dataset.animation;
+                    entry.target.style.opacity = 1;
+                    entry.target.classList.add("animate__animated", animation);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1 
+        });
+        scrollElements.forEach((el) => {
+            observer.observe(el);
+        });
+
+    
+        document.querySelectorAll('.module-complete button').forEach(button => {
+            button.addEventListener('click', () => {
+                button.textContent = 'Completed!';
+                button.classList.add('completed');
+                button.disabled = true;
+            });
+        });
     </script>
 </body>
 </html>

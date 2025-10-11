@@ -1,12 +1,9 @@
 :root {
-    --primary: #0f172a; 
-    --sky: #2563eb; 
-    --paper: #fbfdff; 
-    --accent: #06b6d4; 
-    --chalk: #0f172a; 
-    --muted: #64748b;
-    --radius: 1rem;
-    --glass: rgba(255, 255, 255, 0.6);
+
+    --neon-cyan: #0ff;
+    --dark-bg: #000;
+    --light-text: #aaffff;
+    --primary-text: #fff;
     --nav-height: 72px;
 }
 
@@ -18,34 +15,14 @@
 
 body {
     font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', sans-serif;
-    color: var(--chalk);
+    background: #01010a; 
+    color: var(--primary-text);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: relative;
     padding-top: var(--nav-height);
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    background-image: url("https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=1200&q=80");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    filter: blur(8px) brightness(.85);
-    transform: scale(1.02);
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(180deg, rgba(4, 10, 40, 0.1), rgba(4, 10, 40, 0.3));
-    pointer-events: none;
+    overflow-x: hidden;
 }
 
 header {
@@ -60,20 +37,19 @@ nav.recess {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: var(--glass);
+    background: var(--dark-bg);
     padding: 0 6vw;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 6px 30px rgba(2, 6, 23, 0.08);
+    box-shadow: 0 0 10px var(--neon-cyan);
     height: var(--nav-height);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
 }
 
 .skool-logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--neon-cyan);
     text-decoration: none;
+    text-shadow: 0 0 5px var(--neon-cyan);
 }
 
 .squad-links {
@@ -84,42 +60,47 @@ nav.recess {
 
 .squad-links a {
     text-decoration: none;
-    color: var(--muted);
+    color: var(--neon-cyan);
     font-weight: 600;
-    position: relative;
-    transition: color 0.25s;
+    transition: color 0.3s, text-shadow 0.3s;
 }
 
-.squad-links a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    height: 2px;
-    width: 0;
-    background: var(--sky);
-    transition: width .25s;
-}
-
-.squad-links a:hover {
-    color: var(--primary);
-}
-
-.squad-links a:hover::after,
-.squad-links a.active::after {
-    width: 100%;
-}
-
+.squad-links a:hover,
 .squad-links a.active {
-    color: var(--sky);
+    color: var(--primary-text);
+    text-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.profile-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+.profile-btn:hover {
+    transform: scale(1.08);
+    background: var(--neon-cyan);
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px var(--neon-cyan);
 }
 
 .campfire {
     margin-top: 3rem;
-    background: #0c1221;
-    color: #e6f0ff;
+    background: #000000;
+    color: var(--light-text);
     padding: 3rem 6vw;
     text-align: center;
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
 }
 
 .campfire .links-row {
@@ -130,15 +111,15 @@ nav.recess {
 }
 
 .campfire a {
-    color: rgba(230, 240, 255, 0.8);
+    color: var(--light-text);
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.2s;
+    transition: color 0.2s, text-shadow 0.2s;
 }
 
 .campfire a:hover {
-    color: #fff;
-    text-decoration: underline;
+    color: var(--primary-text);
+    text-shadow: 0 0 5px var(--neon-cyan);
 }
 
 .campfire .social-media {
@@ -152,27 +133,23 @@ nav.recess {
 
 .campfire .contact-sm {
     margin-bottom: 1.5rem;
-    color: var(--muted);
+    color: var(--light-text);
 }
 
 .campfire .contact-sm i {
     vertical-align: middle;
     margin-right: 0.5rem;
-    color: var(--accent);
+    color: var(--neon-cyan);
 }
 
 .campfire .copy-note {
     font-size: .9rem;
-    color: rgba(230, 240, 255, 0.6);
+    color: rgba(170, 255, 255, 0.6);
     margin-top: 2rem;
-}
-
-@media (max-width: 900px) {
-    nav.recess { flex-direction: column; gap:.6rem; }
 }
 
 @media (max-width: 650px) {
     body { padding-top: 0; }
     header { position: static; }
-    nav.recess { flex-direction: column; height: auto; padding: 1rem; }
+    nav.recess { flex-direction: column; height: auto; padding: 1rem; gap: 1rem;}
 }

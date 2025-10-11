@@ -39,14 +39,13 @@
         </section>
 
         <section class="course-accordion">
-            <details class="accordion-item">
+            <details class="accordion-item scroll-animate" data-animation="animate__fadeInUp">
                 <summary class="accordion-header">
                     <h3>Module 1: Introduction to Cyclones</h3>
                     <i class='bx bx-chevron-down'></i>
                 </summary>
                 <div class="accordion-panel">
                     <p>Cyclones (tropical cyclones, hurricanes, typhoons) are intense low-pressure systems that develop over warm ocean waters. They bring strong winds, heavy rain, storm surge and coastal flooding — causing major damage to life, property, agriculture, and infrastructure.</p>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>How Cyclones Form</h4></summary>
                         <div class="accordion-sub-panel">
@@ -61,7 +60,6 @@
                             </div>
                         </div>
                     </details>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>Impacts</h4></summary>
                         <div class="accordion-sub-panel">
@@ -80,14 +78,13 @@
                 </div>
             </details>
 
-            <details class="accordion-item">
+            <details class="accordion-item scroll-animate" data-animation="animate__fadeInUp">
                 <summary class="accordion-header">
                     <h3>Module 2: Prediction & Early Warning</h3>
                     <i class='bx bx-chevron-down'></i>
                 </summary>
                 <div class="accordion-panel">
                     <p>Modern forecasting combines satellites, buoys, radar, and numerical weather models to predict cyclone track, intensity and likely impacts. Accurate, timely warnings save lives.</p>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>Tools & Systems</h4></summary>
                         <div class="accordion-sub-panel">
@@ -102,7 +99,6 @@
                             </div>
                         </div>
                     </details>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>Public Warnings & Watches</h4></summary>
                         <div class="accordion-sub-panel">
@@ -119,14 +115,13 @@
                 </div>
             </details>
 
-            <details class="accordion-item">
+            <details class="accordion-item scroll-animate" data-animation="animate__fadeInUp">
                 <summary class="accordion-header">
                     <h3>Module 3: Preparedness & Safety</h3>
                     <i class='bx bx-chevron-down'></i>
                 </summary>
                 <div class="accordion-panel">
                     <p>Preparation at household and community level dramatically reduces cyclone impacts.</p>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>Before a Cyclone</h4></summary>
                         <div class="accordion-sub-panel">
@@ -141,7 +136,6 @@
                             </div>
                         </div>
                     </details>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>During & After a Cyclone</h4></summary>
                         <div class="accordion-sub-panel">
@@ -159,14 +153,13 @@
                 </div>
             </details>
 
-            <details class="accordion-item">
+            <details class="accordion-item scroll-animate" data-animation="animate__fadeInUp">
                 <summary class="accordion-header">
                     <h3>Module 4: Government Response</h3>
                     <i class='bx bx-chevron-down'></i>
                 </summary>
                 <div class="accordion-panel">
                     <p>Disaster response in India involves coordination between multiple agencies across national and state levels.</p>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>Key Agencies & Roles</h4></summary>
                         <div class="accordion-sub-panel">
@@ -185,7 +178,6 @@
                             </div>
                         </div>
                     </details>
-
                     <details class="accordion-sub-item">
                         <summary class="accordion-sub-header"><h4>Relief & Recovery</h4></summary>
                         <div class="accordion-sub-panel">
@@ -223,10 +215,37 @@
         <p class="copy-note">© <span id="year"></span> ResQEd — All Rights Reserved.</p>
     </footer>
 
-    <script src="../../static/js/script.js"></script>
-
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+        const yearSpan = document.getElementById('year');
+        if (yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+        
+        const scrollElements = document.querySelectorAll(".scroll-animate");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const animation = entry.target.dataset.animation;
+                    entry.target.style.opacity = 1;
+                    entry.target.classList.add("animate__animated", animation);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1 
+        });
+        scrollElements.forEach((el) => {
+            observer.observe(el);
+        });
+
+   
+        document.querySelectorAll('.module-complete button').forEach(button => {
+            button.addEventListener('click', () => {
+                button.textContent = 'Completed!';
+                button.classList.add('completed');
+                button.disabled = true;
+            });
+        });
     </script>
 </body>
 </html>
