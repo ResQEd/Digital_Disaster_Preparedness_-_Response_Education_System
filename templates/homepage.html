@@ -162,7 +162,7 @@
         const apiKey = '15882d9a3d974911a68215517251110'; 
     
 
-        const city = 'delhi';
+        const city = 'Delhi';
         const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=1&aqi=no&alerts=yes`;
 
         const heroAlertList = document.getElementById('alert-list');
@@ -192,7 +192,6 @@
                 heroAlertList.appendChild(li);
             }
 
-            // --- Logic for the "API based alert" Card ---
             if (hasAlerts) {
                 const mainAlert = data.alerts.alert[0];
                 cardAlertTitle.textContent = mainAlert.event;
@@ -212,8 +211,6 @@
             cardAlertDesc.textContent = "Could not connect to the alert service.";
         }
     }
-
-    
     getAlertData();
 </script>
 
